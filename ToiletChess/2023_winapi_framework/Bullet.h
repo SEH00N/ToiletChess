@@ -23,3 +23,8 @@ private:
     Texture* m_pTex;
 };
 
+class Bullet :
+    public Object
+{
+};
+
