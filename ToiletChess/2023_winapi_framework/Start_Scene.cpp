@@ -5,6 +5,7 @@
 #include "KeyMgr.h"
 #include "CollisionMgr.h"
 #include "ResMgr.h"
+#include "SceneMgr.h"
 #include "BG.h"
 #include "Button.h"
 
@@ -29,9 +30,11 @@ void Start_Scene::Init()
 	}
 
 	Button* startButton = new Button({ 640, 525 }, { 400, 85 }, L"StartButton", L"planem", L"plane");
+	startButton->RegisterCallback([]() {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
 	AddObject(startButton, OBJECT_GROUP::DEFAULT);
 
 	Button* infoButton = new Button({ 640, 625 }, { 400, 85 }, L"InfoButton", L"planem", L"plane");
+	infoButton->RegisterCallback([]() {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
 	AddObject(infoButton, OBJECT_GROUP::DEFAULT);
 }
 

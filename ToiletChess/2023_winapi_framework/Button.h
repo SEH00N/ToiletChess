@@ -19,10 +19,14 @@ public:
 	void OnMouseExit() override;
 
 public:
+	void RegisterCallback(void (*callback)()) { OnButtonPressed = callback; }
+
+public:
 	void (*OnButtonPressed)();
 
 private:
 	Texture* defaultTex;
 	Texture* eventTex;
+	bool clicked;
 };
 
