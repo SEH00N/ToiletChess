@@ -8,9 +8,6 @@
 BG::BG(wstring bgKey, wstring bgName) : texture{nullptr}
 {
 	texture = ResMgr::GetInst()->TexLoad(bgKey, L"Texture\\" + bgName + L".bmp");
-
-	SetPos((Vec2({ Core::GetInst()->GetResolution().x / 2, Core::GetInst()->GetResolution().y / 2 })));
-	SetScale({WINDOW_WIDTH, WINDOW_HEIGHT});
 }
 
 BG::~BG()
@@ -29,12 +26,18 @@ void BG::Render(HDC hDC)
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-	StretchBlt(hDC
+	//StretchBlt(hDC
+	//	, (int)(pos.x - scale.x / 2)
+	//	, (int)(pos.y - scale.y / 2)
+	//	, scale.x, scale.y, texture->GetDC()
+	//	, 0, 0, width, height,
+	//	SRCCOPY);
+
+	TransparentBlt(hDC
 		, (int)(pos.x - scale.x / 2)
 		, (int)(pos.y - scale.y / 2)
-		, 1280, 720, texture->GetDC()
-		, 0, 0, width, height,
-		SRCCOPY);
+		, scale.x, scale.y, texture->GetDC()
+		, 0, 0, width, height, RGB(255, 0, 255));
 
 	Component_Render(hDC);
 }
