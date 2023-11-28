@@ -47,12 +47,19 @@ void Interface::Render(HDC hDC)
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-	StretchBlt(hDC
+	//StretchBlt(hDC
+	//	, (int)(pos.x - scale.x / 2)
+	//	, (int)(pos.y - scale.y / 2)
+	//	, scale.x, scale.y, texture->GetDC()
+	//	, 0, 0, width, height,
+	//	SRCCOPY);
+
+	TransparentBlt(hDC
 		, (int)(pos.x - scale.x / 2)
 		, (int)(pos.y - scale.y / 2)
 		, scale.x, scale.y, texture->GetDC()
 		, 0, 0, width, height,
-		SRCCOPY);
+		RGB(255, 0, 255));
 
 	Component_Render(hDC);
 }
