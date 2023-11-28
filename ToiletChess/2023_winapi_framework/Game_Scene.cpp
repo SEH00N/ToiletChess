@@ -6,12 +6,48 @@
 
 void Game_Scene::Init()
 {
-	WareBase* ware = new WareBase({ 640, 625 }, { 50, 100 }, L"Test", L"planem", L"plane");
-	AddObject(ware, OBJECT_GROUP::DEFAULT);
-
-	for (int i = 0; i < 6; ++i)
+	for (int i = -2; i <= 2; ++i)
 	{
-		WareSlot* slot = new WareSlot({ 202.0f + i * 175, 575.0f }, {125, 125}, L"Slot");
+		WareSlot* slot = new WareSlot({ 640 + i * 175, 575 }, { 125, 125 }, L"Slot");
 		AddObject(slot, OBJECT_GROUP::DEFAULT);
 	}
+
+	CreateWare(inven1);
+	CreateWare(inven2);
+
+	SetInven(inven1);
+}
+
+void Game_Scene::CreateWare(std::vector<WareBase*>& inven)
+{
+	inven.resize(5);
+
+	//inven[0] = new WareBase({ 0, 0 }, {100, 100}, L"Anchovy", L"Anchovy", L"AnchovyFocused");
+	//inven[1] = new WareBase({ 0, 0 }, { 100, 100 }, L"Employee", L"Employee", L"EmployeeFocused");
+	//inven[2] = new WareBase({ 0, 0 }, { 100, 100 }, L"Employee", L"Employee", L"EmployeeFocused");
+	//inven[3] = new WareBase({ 0, 0 }, { 100, 100 }, L"Pig", L"Pig", L"PigFocused");
+	//inven[4] = new WareBase({ 0, 0 }, { 100, 100 }, L"Athlete", L"Athlete", L"AthleteFocused");
+
+	inven[0] = new WareBase({ 0, 0 }, { 100, 100 }, L"Anchovy", L"planem", L"plane");
+	inven[1] = new WareBase({ 0, 0 }, { 100, 100 }, L"Employee", L"planem", L"plane");
+	inven[2] = new WareBase({ 0, 0 }, { 100, 100 }, L"Employee", L"planem", L"plane");
+	inven[3] = new WareBase({ 0, 0 }, { 100, 100 }, L"Pig", L"planem", L"plane");
+	inven[4] = new WareBase({ 0, 0 }, { 100, 100 }, L"Athlete", L"planem", L"plane");
+
+	for (int i = -2; i <= 2; ++i)
+	{
+		inven[i + 2]->SetPos({ 640 + i * 175, 575 });
+		AddObject(inven[i + 2], OBJECT_GROUP::DEFAULT);
+	}
+}
+
+void Game_Scene::SetInven(std::vector<WareBase*>& inven)
+{
+	if (currentInven != nullptr)
+		for (int i = 0; i < currentInven->size(); ++i)
+			currentInven->at(i)->SetRender(false);
+
+	currentInven = &inven;
+	for (int i = 0; i < currentInven->size(); ++i)
+		currentInven->at(i)->SetRender(true);
 }

@@ -13,6 +13,10 @@ public:
 	void Render(HDC hDC) override;
 
 public:
+	void SetRender(bool render) { this->render = render; }
+	bool GetRender() { return render; }
+
+public:
 	virtual void OnMouseEnter();
 	virtual void OnMouse();
 	virtual void OnMouseExit();
@@ -20,5 +24,6 @@ public:
 protected:
 	Texture* texture;
 	bool onMouse;
+	bool render;
 };
 

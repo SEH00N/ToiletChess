@@ -2,7 +2,7 @@
 #include "Interface.h"
 #include "KeyMgr.h"
 
-Interface::Interface(Vec2 pos, Vec2 scale) :texture{ nullptr }, onMouse{false}
+Interface::Interface(Vec2 pos, Vec2 scale) :texture{ nullptr }, onMouse{ false }, render{true}
 {
 	SetPos(pos);
 	SetScale(scale);
@@ -41,6 +41,9 @@ void Interface::Update()
 
 void Interface::Render(HDC hDC)
 {
+	if (render == false)
+		return;
+
 	Vec2 pos = GetPos();
 	Vec2 scale = GetScale();
 

@@ -48,3 +48,11 @@ enum class EVENT_TYPE
 	SCENE_CHANGE,
 	END
 };
+
+enum class WareType
+{
+	Anchovy,
+	Athlete,
+	Pig,
+	Employee
+};
