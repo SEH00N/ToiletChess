@@ -62,6 +62,12 @@
     <Filter Include="Engine\08. Module">
       <UniqueIdentifier>{b8698270-780f-4bb6-bf63-bf69c99fa2ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\MainObject\UI">
+      <UniqueIdentifier>{340ac337-1233-4301-9dc4-46116079a63c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Object\MainObject\Ware">
+      <UniqueIdentifier>{810676ca-bbc0-4cb6-8c5e-39f18f71abd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -148,14 +154,17 @@
     <ClInclude Include="BG.h">
       <Filter>Engine\04. Object\MainObject</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Engine\04. Object\MainObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Interface.h">
-      <Filter>Engine\04. Object\MainObject</Filter>
-    </ClInclude>
     <ClInclude Include="Info_Scene.h">
       <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface.h">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WareBase.h">
+      <Filter>Engine\04. Object\MainObject\Ware</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -238,14 +247,17 @@
     <ClCompile Include="BG.cpp">
       <Filter>Engine\04. Object\MainObject</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Engine\04. Object\MainObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Interface.cpp">
-      <Filter>Engine\04. Object\MainObject</Filter>
-    </ClCompile>
     <ClCompile Include="Info_Scene.cpp">
       <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface.cpp">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="WareBase.cpp">
+      <Filter>Engine\04. Object\MainObject\Ware</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

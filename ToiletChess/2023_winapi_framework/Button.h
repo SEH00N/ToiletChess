@@ -1,5 +1,6 @@
 #pragma once
 #include "Interface.h"
+#include <functional>
 
 class Texture;
 
@@ -19,14 +20,18 @@ public:
 	void OnMouseExit() override;
 
 public:
-	void RegisterCallback(void (*callback)()) { OnButtonPressed = callback; }
+	void RegisterReleased(std::function<void()> callback) { onButtonReleased = callback; }
+	void RegisterClicked(std::function<void()> callback) { onButtonClicked = callback; }
 
-public:
-	void (*OnButtonPressed)();
+private:
+	std::function<void()> onButtonClicked;
+	std::function<void()> onButtonReleased;
 
 private:
 	Texture* defaultTex;
 	Texture* eventTex;
+
+protected:
 	bool clicked;
 };
 
