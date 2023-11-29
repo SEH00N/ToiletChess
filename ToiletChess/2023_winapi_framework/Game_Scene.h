@@ -15,7 +15,10 @@ private:
     std::vector<WareBase*>* currentInven;
 
 private:
-    void CreateWare(std::vector<WareBase*>& inven);
+    void CreateWare(std::vector<WareBase*>& inven, Vec2 scale);
     void SetInven(std::vector<WareBase*>& inven);
+
+private:
+    void CreateUrinal(Vec2 startPos, Vec2 scale, float factor, int count);
 };
 

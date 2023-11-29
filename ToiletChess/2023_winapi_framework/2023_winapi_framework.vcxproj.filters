@@ -68,6 +68,9 @@
     <Filter Include="Engine\04. Object\MainObject\Ware">
       <UniqueIdentifier>{810676ca-bbc0-4cb6-8c5e-39f18f71abd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\GameMgr">
+      <UniqueIdentifier>{935d7390-6391-40da-8189-a557dc53ee31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -169,6 +172,12 @@
     <ClInclude Include="WareSlot.h">
       <Filter>Engine\04. Object\MainObject\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Urinal.h">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMgr.h">
+      <Filter>Engine\03. Manager\GameMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2023_winapi_framework.rc">
@@ -264,6 +273,12 @@
     </ClCompile>
     <ClCompile Include="WareSlot.cpp">
       <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Urinal.cpp">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMgr.cpp">
+      <Filter>Engine\03. Manager\GameMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -12,6 +12,7 @@ public:
 
 public:
 	void OnClicked();
+	void OnReleased();
 
 public:
 	void SetConfidence(int i) { confidence = i; }
@@ -20,6 +21,9 @@ public:
 public:
 	bool CheckFront(WareBase& right);
 	bool CheckSide(WareBase& right);
+
+public:
+	Vec2 CalculateOffset();
 
 private:
 	Vec2 offset;

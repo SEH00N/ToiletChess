@@ -180,6 +180,7 @@
     <ClInclude Include="enums.h" />
     <ClInclude Include="EventMgr.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="GameMgr.h" />
     <ClInclude Include="Game_Scene.h" />
     <ClInclude Include="Info_Scene.h" />
     <ClInclude Include="Interface.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="Urinal.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="WareBase.h" />
     <ClInclude Include="WareSlot.h" />
@@ -211,6 +213,7 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="EventMgr.cpp" />
+    <ClCompile Include="GameMgr.cpp" />
     <ClCompile Include="Game_Scene.cpp" />
     <ClCompile Include="Info_Scene.cpp" />
     <ClCompile Include="Interface.cpp" />
@@ -226,6 +229,7 @@
     <ClCompile Include="Start_Scene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="Urinal.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="WareBase.cpp" />
     <ClCompile Include="WareSlot.cpp" />
