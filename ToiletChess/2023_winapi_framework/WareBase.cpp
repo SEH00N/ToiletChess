@@ -39,6 +39,9 @@ void WareBase::OnClicked()
 void WareBase::OnReleased()
 {
 	GameMgr::GetInst()->SetCurrentWare(nullptr);
+	Urinal* urinal = GameMgr::GetInst()->GetCurrentUrinal();
+	if (urinal == nullptr)
+		SetPos(originPos);
 }
 
 bool WareBase::CheckFront(WareBase& right)

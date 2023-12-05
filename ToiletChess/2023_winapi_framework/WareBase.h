@@ -15,6 +15,8 @@ public:
 	void OnReleased();
 
 public:
+	void SetOriginPos(Vec2 pos) { originPos = pos; }
+	Vec2 GetOriginPos() { return originPos; }
 	void SetConfidence(int i) { confidence = i; }
 	void SetHeight(int i) { height = i; }
 
@@ -26,6 +28,7 @@ public:
 	Vec2 CalculateOffset();
 
 private:
+	Vec2 originPos;
 	Vec2 offset;
 	int confidence;
 	int height;

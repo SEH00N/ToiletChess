@@ -16,7 +16,7 @@ Urinal::~Urinal()
 
 void Urinal::Update()
 {
-
+	Interface::Update();
 }
 
 void Urinal::FinalUpdate()
@@ -40,6 +40,7 @@ void Urinal::OnMouseEnter()
 		return;
 
 	isFocused = true;
+	GameMgr::GetInst()->SetCurrentUrinal(this);
 }
 
 void Urinal::OnMouse()
@@ -50,4 +51,5 @@ void Urinal::OnMouse()
 void Urinal::OnMouseExit()
 {
 	isFocused = false;
+	GameMgr::GetInst()->SetCurrentUrinal(nullptr);
 }

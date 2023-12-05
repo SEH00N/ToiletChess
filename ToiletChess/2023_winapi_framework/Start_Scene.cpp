@@ -16,24 +16,24 @@ void Start_Scene::Init()
 	bg->SetScale({ WINDOW_WIDTH, WINDOW_HEIGHT });
 	AddObject(bg, OBJECT_GROUP::DEFAULT);
 
-	BG* title = new BG(L"Title", L"plane");
+	BG* title = new BG(L"Title", L"Title");
 	title->SetPos({ 640, 130 });
-	title->SetScale({ 800, 150 });
+	title->SetScale({ 900, 250 });
 	AddObject(title, OBJECT_GROUP::DEFAULT);
 
 	for (int i = 0; i < 10; ++i)
 	{
 		BG* urinal = new BG(L"Urinal", L"Urinal");
 		urinal->SetPos({ 100 + i * 120, 335 });
-		urinal->SetScale({ 192, 192 });
+		urinal->SetScale({ 90, 140 });
 		AddObject(urinal, OBJECT_GROUP::DEFAULT);
 	}
 
-	Button* startButton = new Button({ 640, 525 }, { 400, 85 }, L"StartButton", L"planem", L"plane");
+	Button* startButton = new Button({ 640, 525 }, { 350, 95 }, L"ButtonStart", L"ButtonStart", L"ButtonStart_Focus");
 	startButton->RegisterReleased([]() {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
 	AddObject(startButton, OBJECT_GROUP::DEFAULT);
 
-	Button* infoButton = new Button({ 640, 625 }, { 400, 85 }, L"InfoButton", L"planem", L"plane");
+	Button* infoButton = new Button({ 640, 640 }, { 350, 95 }, L"ButtonInfo", L"ButtonInfo", L"ButtonInfo_Focus");
 	infoButton->RegisterReleased([]() {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
 	AddObject(infoButton, OBJECT_GROUP::DEFAULT);
 }

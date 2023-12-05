@@ -13,7 +13,7 @@ void Game_Scene::Init()
 		AddObject(slot, OBJECT_GROUP::DEFAULT);
 	}
 
-	CreateUrinal({100, 335}, { 192, 192 }, 120, 10);
+	CreateUrinal({100, 335}, { 90, 140 }, 120, 10);
 
 	CreateWare(inven1, { 100, 100 });
 	CreateWare(inven2, { 100, 100 });
@@ -39,7 +39,8 @@ void Game_Scene::CreateWare(std::vector<WareBase*>& inven, Vec2 scale)
 
 	for (int i = -2; i <= 2; ++i)
 	{
-		inven[i + 2]->SetPos({ 640 + i * 175, 575 });
+		inven[i + 2]->SetPos({ 640 + i * 175, 5750 });
+		inven[i + 2]->SetOriginPos({ 640 + i * 175, 5750 });
 		AddObject(inven[i + 2], OBJECT_GROUP::DEFAULT);
 	}
 }
@@ -47,12 +48,24 @@ void Game_Scene::CreateWare(std::vector<WareBase*>& inven, Vec2 scale)
 void Game_Scene::SetInven(std::vector<WareBase*>& inven)
 {
 	if (currentInven != nullptr)
+	{
 		for (int i = 0; i < currentInven->size(); ++i)
-			currentInven->at(i)->SetRender(false);
+		{
+			WareBase* ware = (*currentInven)[i];
+			ware->SetRender(false);
+			ware->SetPos({ ware->GetPos().x, 5750.0f });
+			ware->SetOriginPos({ ware->GetPos().x, 5750.0f });
+		}
+	}
 
 	currentInven = &inven;
 	for (int i = 0; i < currentInven->size(); ++i)
-		currentInven->at(i)->SetRender(true);
+	{
+		WareBase* ware = (*currentInven)[i];
+		ware->SetRender(true);
+		ware->SetPos({ ware->GetPos().x, 575.0f });
+		ware->SetOriginPos({ ware->GetPos().x, 575.0f });
+	}
 }
 
 void Game_Scene::CreateUrinal(Vec2 startPos, Vec2 scale, float factor, int count)
