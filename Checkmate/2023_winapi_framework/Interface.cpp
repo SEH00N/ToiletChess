@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Interface.h"
 #include "KeyMgr.h"
+#include "ResMgr.h"
 #include "Texture.h"
 
 Interface::Interface(Vec2 pos, Vec2 scale) : texture{ nullptr }, onFocused{ false }, renderable{ true }
@@ -66,6 +67,11 @@ void Interface::Render(HDC hDC)
 		RGB(255, 0, 255));
 
 	Component_Render(hDC);
+}
+
+void Interface::SetTexture(wstring texName)
+{
+	texture = ResMgr::GetInst()->TexLoad(texName, L"Texture\\" + texName + L".bmp");
 }
 
 void Interface::OnMouseEnter()

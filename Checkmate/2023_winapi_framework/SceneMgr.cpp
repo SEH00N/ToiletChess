@@ -8,6 +8,7 @@ void SceneMgr::Init()
 	// ¾À µî·Ï
 	RegisterScene(L"Start_Scene",std::make_shared<Start_Scene>());
 	RegisterScene(L"Game_Scene", std::make_shared<Game_Scene>());
+	RegisterScene(L"Info_Scene", std::make_shared<Game_Scene>());
 
 	// Ã¹ ¾À ÁöÁ¤
 	LoadScene(L"Start_Scene");
@@ -15,8 +16,8 @@ void SceneMgr::Init()
 
 void SceneMgr::Update()
 {
-	m_pCurScene->Update();
-	m_pCurScene->FinalUpdate();
+		m_pCurScene->Update();
+		m_pCurScene->FinalUpdate();
 }
 
 void SceneMgr::Render(HDC _dc)

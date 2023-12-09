@@ -18,6 +18,8 @@ public:
     void Render(HDC hDC) override;
 
 public:
+    void SetTexture(wstring texName);
+    void SetTexture(Texture* texture) { this->texture = texture; }
     void SetRender(bool enable) { this->renderable = enable; }
     bool GetRender() { return renderable; }
 

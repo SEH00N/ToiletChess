@@ -160,6 +160,13 @@
     <ClInclude Include="Button.h">
       <Filter>Engine\04. Object\MainObject\UI</Filter>
     </ClInclude>
+    <ClInclude Include="WareImage.h">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="WareInventorySlot.h">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Info_Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2023_winapi_framework.rc">
@@ -244,5 +251,12 @@
     <ClCompile Include="Button.cpp">
       <Filter>Engine\04. Object\MainObject\UI</Filter>
     </ClCompile>
+    <ClCompile Include="WareImage.cpp">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="WareInventorySlot.cpp">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Info_Scene.cpp" />
   </ItemGroup>
 </Project>
