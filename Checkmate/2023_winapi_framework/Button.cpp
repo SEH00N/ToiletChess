@@ -4,12 +4,12 @@
 #include "KeyMgr.h"
 
 Button::Button(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName)
-	: Interface(pos, scale), defaultTex{ nullptr }, focusedTex{ nullptr }, OnClickedEvent{Action<Vec2>()}, pressed{false}
+	: Interface(pos, scale), defaultTex{ nullptr }, focusedTex{ nullptr }, OnPressedEvent{ Action<Vec2>() }, OnClickedEvent{Action<Vec2>()}, pressed{false}
 {
 	defaultTex = ResMgr::GetInst()->TexLoad(defaultTexName, L"Texture\\" + defaultTexName + L".bmp");
 	focusedTex = ResMgr::GetInst()->TexLoad(focusedTexName, L"Texture\\" + focusedTexName + L".bmp");
 
-	texture = defaultTex;
+	SetTexture(defaultTex);
 }
 
 Button::~Button()
@@ -21,7 +21,10 @@ void Button::Update()
 	Interface::Update();
 
 	if (onFocused && KEY_DOWN(KEY_TYPE::LBUTTON))
+	{
+		OnPressedEvent.Invoke(KeyMgr::GetInst()->GetMousePos());
 		pressed = true;
+	}
 
 	if (pressed && KEY_UP(KEY_TYPE::LBUTTON))
 	{
@@ -34,10 +37,10 @@ void Button::Update()
 
 void Button::OnMouseEnter()
 {
-	texture = focusedTex;
+	SetTexture(focusedTex);
 }
 
 void Button::OnMouseExit()
 {
-	texture = defaultTex;
+	SetTexture(defaultTex);
 }

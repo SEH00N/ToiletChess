@@ -18,9 +18,11 @@ public:
     void OnMouseExit() override;
 
 public:
+    void RegisterPressed(std::function<void(Vec2)> callback) { OnPressedEvent.RegisterEvent(callback); }
     void RegisterClicked(std::function<void(Vec2)> callback) { OnClickedEvent.RegisterEvent(callback); }
 
-private:
+protected:
+    Action<Vec2> OnPressedEvent;
     Action<Vec2> OnClickedEvent;
     Texture* defaultTex;
     Texture* focusedTex;

@@ -46,7 +46,7 @@ inline void Action<T>::RegisterEvent(std::function<void(T)> event)
 template<typename T>
 inline void Action<T>::UnregisterEvent(std::function<void(T)> event)
 {
-	auto iter = events.find(event);
+	auto iter = std::find(events.begin(), events.end(), event);
 	if (iter != events.end())
 		events.erase(iter);
 }
