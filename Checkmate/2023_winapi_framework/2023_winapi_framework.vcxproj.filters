@@ -157,6 +157,9 @@
     <ClInclude Include="Action.h">
       <Filter>Engine\08. Module\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2023_winapi_framework.rc">
@@ -236,6 +239,9 @@
       <Filter>Engine\07. Component</Filter>
     </ClCompile>
     <ClCompile Include="Interface.cpp">
+      <Filter>Engine\04. Object\MainObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
       <Filter>Engine\04. Object\MainObject\UI</Filter>
     </ClCompile>
   </ItemGroup>

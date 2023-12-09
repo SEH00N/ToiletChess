@@ -3,7 +3,7 @@
 #include "KeyMgr.h"
 #include "Texture.h"
 
-Interface::Interface(Vec2 pos, Vec2 scale) : texture{ nullptr }, onFocused{ false }, renderable{ false }
+Interface::Interface(Vec2 pos, Vec2 scale) : texture{ nullptr }, onFocused{ false }, renderable{ true }
 {
 	SetPos(pos);
 	SetScale(scale);

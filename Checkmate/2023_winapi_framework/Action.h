@@ -25,17 +25,16 @@ inline Action<T>::Action()
 template<typename T>
 inline Action<T>::~Action()
 {
-	for (auto i = events.begin(); i != events.end(); ++i)
-		i = events.erase(i);
-
 	events.clear();
 }
 
 template<typename T>
 inline void Action<T>::Invoke(T item)
 {
-	for (auto i = events.begin(); i != events.end(); ++i)
-		i(item);
+	for (int i = 0; i < events.size(); ++i)
+		events[i](item);
+	//for (auto i = events.begin(); i != events.end(); ++i)
+	//	*(i)(item);
 }
 
 template<typename T>
