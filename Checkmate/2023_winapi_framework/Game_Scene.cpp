@@ -3,9 +3,13 @@
 #include "Core.h"
 #include "Interface.h"
 #include "Inventory.h"
+#include "WareSlot.h"
 
 void Game_Scene::Init()
 {
+	WareSlot* slot = new WareSlot({ 100, 100 }, {100, 100}, L"Urinal");
+	AddObject(slot);
+	
 	LoadBackground();
 	InitInventory();
 }

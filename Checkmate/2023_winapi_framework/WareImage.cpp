@@ -2,7 +2,9 @@
 #include "WareImage.h"
 #include "Core.h"
 #include "KeyMgr.h"
+#include "GameMgr.h"
 #include "WareInventorySlot.h"
+#include "WareSlot.h"
 
 WareImage::WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName) 
 	: Button(pos, scale, defaultTexName, focusedTexName), slot{ nullptr }, offset{Vec2(0, 0)}
@@ -26,7 +28,11 @@ void WareImage::Update()
 		if (mousePos.x >= resolution.x || mousePos.x <= 0 || mousePos.y >= resolution.y || mousePos.y <= 0)
 			return;
 
-		SetPos(mousePos + offset);
+		WareSlot* currentSlot = GameMgr::GetInst()->GetCurrentSlot();
+		if (currentSlot)
+			SetPos(currentSlot->GetPos());
+		else
+			SetPos(mousePos + offset);
 	}
 }
 
@@ -39,9 +45,17 @@ Vec2 WareImage::CalculateOffset(Vec2 mousePos)
 void WareImage::OnPressed(Vec2 pos)
 {
 	offset = CalculateOffset(pos);
+	GameMgr::GetInst()->SetCurrentWare(this);
 }
 
 void WareImage::OnClicked(Vec2 pos)
 {
-	SetPos(slot->GetPos());
+	if (GameMgr::GetInst()->GetCurrentWare() != this)
+		return;
+
+	WareSlot* currentSlot = GameMgr::GetInst()->GetCurrentSlot();
+	if(currentSlot == nullptr)
+		SetPos(slot->GetPos());
+
+	GameMgr::GetInst()->SetCurrentWare(nullptr);
 }

@@ -18,7 +18,7 @@ public:
 		return m_vecObj[(UINT)_etype];
 	}
 public:
-	void AddObject(Object* _pObj, OBJECT_GROUP _eType)
+	void AddObject(Object* _pObj, OBJECT_GROUP _eType = OBJECT_GROUP::DEFAULT)
 	{
 		m_vecObj[(UINT)_eType].push_back(_pObj);
 	}
