@@ -16,6 +16,7 @@ public:
 public:
     void SetSlot(WareInventorySlot* slot) { this->slot = slot; }
     WareInventorySlot* GetSlot() { return slot; }
+    Texture* GetTexture() { return texture; }
 
 public:
     Vec2 CalculateOffset(Vec2 mousePos);

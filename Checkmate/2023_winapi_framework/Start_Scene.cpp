@@ -60,10 +60,10 @@ void Start_Scene::LoadBackground()
 void Start_Scene::LoadButtons()
 {
 	Button* startButton = new Button({ 640, 525 }, { 350, 95 }, L"StartButton", L"StartButton_Focused");
-	startButton->RegisterClicked([](Vec2 pos) {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
+	startButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
 	AddObject(startButton, OBJECT_GROUP::DEFAULT);
 
 	Button* infoButton = new Button({ 640, 640 }, { 350, 95 }, L"InfoButton", L"InfoButton_Focused");
-	infoButton->RegisterClicked([](Vec2 pos) {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
+	infoButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
 	AddObject(infoButton, OBJECT_GROUP::DEFAULT);
 }

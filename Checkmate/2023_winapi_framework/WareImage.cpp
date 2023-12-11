@@ -3,14 +3,17 @@
 #include "Core.h"
 #include "KeyMgr.h"
 #include "GameMgr.h"
+#include "SceneMgr.h"
+#include "EventMgr.h"
+#include "Scene.h"
 #include "WareInventorySlot.h"
 #include "WareSlot.h"
 
 WareImage::WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName) 
 	: Button(pos, scale, defaultTexName, focusedTexName), slot{ nullptr }, offset{Vec2(0, 0)}
 {
-	RegisterPressed([this](Vec2 pos) {OnPressed(pos); });
-	RegisterClicked([this](Vec2 pos) {OnClicked(pos); });
+	RegisterPressed([this]() {OnPressed(KeyMgr::GetInst()->GetMousePos()); });
+	RegisterClicked([this]() {OnClicked(KeyMgr::GetInst()->GetMousePos()); });
 }
 
 WareImage::~WareImage()
@@ -52,10 +55,15 @@ void WareImage::OnClicked(Vec2 pos)
 {
 	if (GameMgr::GetInst()->GetCurrentWare() != this)
 		return;
+	GameMgr::GetInst()->SetCurrentWare(nullptr);
 
 	WareSlot* currentSlot = GameMgr::GetInst()->GetCurrentSlot();
-	if(currentSlot == nullptr)
+	if (currentSlot == nullptr)
 		SetPos(slot->GetPos());
+	else
+	{
+		currentSlot->SetWare(this);
+		EventMgr::GetInst()->DeleteObject(this);
+	}
 
-	GameMgr::GetInst()->SetCurrentWare(nullptr);
 }
