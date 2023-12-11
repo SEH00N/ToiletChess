@@ -9,11 +9,19 @@
 #include "Button.h"
 #include "WareImage.h"
 #include "Inventory.h"
+#include "TextBox.h"
 
 void Start_Scene::Init()
 {
 	LoadBackground();
 	LoadButtons();
+
+	//TextBox* text = new TextBox({100, 100}, {10, 10}, L"Hello");
+	//AddObject(text);
+
+	//Button* temp = new Button({ 640, 325 }, { 350, 95 }, L"StartButton", L"StartButton_Focused");
+	//temp->RegisterClicked([text]() {text->SetText(L"DDD"); });
+	//AddObject(temp, OBJECT_GROUP::DEFAULT);
 }
 
 void Start_Scene::Update()

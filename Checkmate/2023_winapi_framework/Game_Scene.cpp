@@ -11,8 +11,6 @@ void Game_Scene::Init()
 	LoadBackground();
 
 	board = new ToiletBoard();
-	WareSlot* slot = new WareSlot({ 100, 100 }, {100, 100}, L"Urinal");
-	AddObject(slot);
 
 	InitInventory();
 }

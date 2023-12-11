@@ -14,7 +14,7 @@ ToiletBoard::ToiletBoard()
 	for (int i = 0; i < boardRow; ++i)
 	{
 		slots[0][i] = new WareSlot({ 100 + i * 120, 300 }, { 90, 140 }, L"Urinal");
-		slots[1][i] = new WareSlot({ 100 + i * 120, 415 }, { 90, 90 }, L"Urinal");
+		slots[1][i] = new WareSlot({ 100 + i * 120, 415 }, { 90, 90 }, L"Slot");
 
 		slots[0][i]->SetID(0, i);
 		slots[1][i]->SetID(1, i);

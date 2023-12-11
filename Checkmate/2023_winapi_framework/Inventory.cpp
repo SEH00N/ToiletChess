@@ -8,16 +8,11 @@ Inventory::Inventory()
 {
 	slots = std::vector<WareInventorySlot*>(5);
 
-	//slots[0] = CreateSlot(L"Anchovy");
-	//slots[1] = CreateSlot(L"Employee");
-	//slots[2] = CreateSlot(L"Employee");
-	//slots[3] = CreateSlot(L"Pig");
-	//slots[4] = CreateSlot(L"Athlete");
-	slots[0] = CreateSlot(L"plane");
-	slots[1] = CreateSlot(L"plane");
-	slots[2] = CreateSlot(L"plane");
-	slots[3] = CreateSlot(L"plane");
-	slots[4] = CreateSlot(L"plane");
+	slots[0] = CreateSlot(L"Anchovy");
+	slots[1] = CreateSlot(L"Employee");
+	slots[2] = CreateSlot(L"Employee");
+	slots[3] = CreateSlot(L"Pig");
+	slots[4] = CreateSlot(L"Athlete");
 
 	for (int i = -2; i <= 2; ++i)
 	{
