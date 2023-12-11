@@ -2,6 +2,7 @@
 #include "WareImage.h"
 #include "Core.h"
 #include "KeyMgr.h"
+#include "WareInventorySlot.h"
 
 WareImage::WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName) 
 	: Button(pos, scale, defaultTexName, focusedTexName), slot{ nullptr }, offset{Vec2(0, 0)}
@@ -42,4 +43,5 @@ void WareImage::OnPressed(Vec2 pos)
 
 void WareImage::OnClicked(Vec2 pos)
 {
+	SetPos(slot->GetPos());
 }

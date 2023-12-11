@@ -2,9 +2,12 @@
 #include "Game_Scene.h"
 #include "Core.h"
 #include "Interface.h"
+#include "Inventory.h"
 
 void Game_Scene::Init()
 {
+	LoadBackground();
+	InitInventory();
 }
 
 void Game_Scene::LoadBackground()
@@ -16,4 +19,13 @@ void Game_Scene::LoadBackground()
 	);
 	bg->SetTexture(L"BG");
 	AddObject(bg, OBJECT_GROUP::DEFAULT);
+}
+
+void Game_Scene::InitInventory()
+{
+	inven1 = new Inventory();
+	inven2 = new Inventory();
+
+	inven1->Show();
+	inven2->Hide();
 }

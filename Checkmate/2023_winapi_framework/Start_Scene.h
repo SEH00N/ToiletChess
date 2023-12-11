@@ -4,6 +4,8 @@
 template<typename T>
 class Action;
 
+class Inventory;
+
 class Start_Scene :
     public Scene
 {

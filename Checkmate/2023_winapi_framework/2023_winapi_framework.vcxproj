@@ -183,6 +183,7 @@
     <ClInclude Include="Game_Scene.h" />
     <ClInclude Include="Info_Scene.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Inventory.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="PathMgr.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Game_Scene.cpp" />
     <ClCompile Include="Info_Scene.cpp" />
     <ClCompile Include="Interface.cpp" />
+    <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />

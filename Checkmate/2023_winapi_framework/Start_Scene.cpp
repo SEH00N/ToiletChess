@@ -8,14 +8,12 @@
 #include "ResMgr.h"
 #include "Button.h"
 #include "WareImage.h"
+#include "Inventory.h"
 
 void Start_Scene::Init()
 {
 	LoadBackground();
 	LoadButtons();
-
-	WareImage* ware = new WareImage({ 640, 200 }, { 100, 100 }, L"planem", L"planem");
-	AddObject(ware, OBJECT_GROUP::DEFAULT);
 }
 
 void Start_Scene::Update()
