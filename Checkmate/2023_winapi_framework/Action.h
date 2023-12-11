@@ -32,7 +32,8 @@ template<typename T>
 inline void Action<T>::Invoke(T item)
 {
 	for (int i = 0; i < events.size(); ++i)
-		events[i](item);
+		if(events[i])
+			events[i](item);
 	//for (auto i = events.begin(); i != events.end(); ++i)
 	//	*(i)(item);
 }
@@ -40,7 +41,8 @@ inline void Action<T>::Invoke(T item)
 template<typename T>
 inline void Action<T>::RegisterEvent(std::function<void(T)> event)
 {
-	events.push_back(event);
+	if(event != nullptr)
+		events.push_back(event);
 }
 
 template<typename T>
