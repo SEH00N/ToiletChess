@@ -16,8 +16,8 @@ Inventory::Inventory()
 
 	for (int i = -2; i <= 2; ++i)
 	{
-		slots[i + 2]->SetPos({ 640 + i * 175, 5750 });
-		slots[i + 2]->GetWare()->SetPos({ 640 + i * 175, 5750 });
+		slots[i + 2]->SetPos({ 640 + i * 175, 6000 });
+		slots[i + 2]->GetWare()->SetPos({ 640 + i * 175, 6000 });
 	}
 }
 
@@ -27,10 +27,19 @@ Inventory::~Inventory()
 
 WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 {
-	Vec2 slotScale = { 125, 125 };
-	Vec2 wareScale = { 100, 100 };
+	Vec2 slotScale = { 140, 140 };
+	Vec2 wareScale = { 125, 125 };
 	WareInventorySlot* slot = new WareInventorySlot({ 0, 0 }, slotScale, L"Slot");
 	WareImage* ware = new WareImage({ 0, 0 }, wareScale, wareName, wareName);
+
+	if (wareName == L"Anchovy")
+		ware->SetStat(1, 3);
+	else if(wareName == L"Employee")
+		ware->SetStat(2, 2);
+	else if(wareName == L"Pig")
+		ware->SetStat(4, 1);
+	else if(wareName == L"Athlete")
+		ware->SetStat(3, 3);
 
 	slot->SetWare(ware);
 	ware->SetSlot(slot);
@@ -48,7 +57,7 @@ void Inventory::Show()
 	{
 		WareInventorySlot* ware = slots[i];
 		ware->SetRender(true);
-		ware->SetPos({ ware->GetPos().x, 575.0f });
+		ware->SetPos({ ware->GetPos().x, 600.0f });
 		ware->GetWare()->SetPos(ware->GetPos());
 	}
 }
@@ -59,7 +68,7 @@ void Inventory::Hide()
 	{
 		WareInventorySlot* ware = slots[i];
 		ware->SetRender(true);
-		ware->SetPos({ ware->GetPos().x, 5750.0f });
+		ware->SetPos({ ware->GetPos().x, 6000.0f });
 		ware->GetWare()->SetPos(ware->GetPos());
 	}
 }

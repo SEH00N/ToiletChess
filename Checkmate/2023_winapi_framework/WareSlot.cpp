@@ -2,6 +2,7 @@
 #include "WareSlot.h"
 #include "WareImage.h"
 #include "GameMgr.h"
+#include "ToiletBoard.h"
 #include "Texture.h"
 
 WareSlot::WareSlot(Vec2 pos, Vec2 scale, wstring texName) : Interface(pos, scale), wareTex{nullptr}
@@ -17,7 +18,7 @@ void WareSlot::Render(HDC hDC)
 		return;
 
 	Vec2 pos = GetPos();
-	Vec2 scale = { 100, 100 };
+	Vec2 scale = { 125, 125 };
 
 	int width = wareTex->GetWidth();
 	int height = wareTex->GetHeight();
@@ -56,5 +57,74 @@ void WareSlot::OnMouseExit()
 
 void WareSlot::SetWare(WareImage* ware)
 {
-	wareTex = ware->GetTexture();
+	SetWare(ware->GetTexture(), ware->GetConfidence(), ware->GetHeight());
+}
+
+void WareSlot::SetWare(Texture* tex, int confidence, int height)
+{
+	this->wareTex = tex;
+	this->confidence = confidence;
+	this->height = height;
+
+	if (line == 0)
+		CheckSide();
+	else if (line == 1)
+		CheckFront();
+
+	GameMgr::GetInst()->ToggleInventory();
+}
+
+void WareSlot::CheckSide()
+{
+	if (wareTex == nullptr)
+		return;
+
+	ToiletBoard* board = GameMgr::GetInst()->GetBoard();
+	WareSlot* left = board->GetSlot(line, index - 1);
+	WareSlot* right = board->GetSlot(line, index + 1);
+
+	if (left && left->wareTex)
+	{
+		bool isWin = CheckSide(left);
+		if (isWin)
+			left->ResetSlot();
+	}
+
+	if (right && right->wareTex)
+	{
+		bool isWin = CheckSide(right);
+		if (isWin)
+			right->ResetSlot();
+	}
+}
+
+void WareSlot::CheckFront()
+{
+	if (wareTex == nullptr)
+		return;
+
+	ToiletBoard* board = GameMgr::GetInst()->GetBoard();
+	WareSlot* front = board->GetSlot(line - 1, index);
+
+	if (front && front->wareTex)
+	{
+		bool isWin = CheckFront(front);
+		if (isWin)
+		{
+			Texture* tempTex = wareTex;
+			int tempConfidence = confidence;
+			int tempHeight = height;
+			ResetSlot();
+
+			front->SetWare(tempTex, tempConfidence, tempHeight);
+		}
+	}
+}
+
+void WareSlot::ResetSlot()
+{
+	// 여기에 에니미이션을 넣든 뭐든 해야할 듯
+	wareTex = nullptr;
+	confidence = 0;
+	height = 0;
 }

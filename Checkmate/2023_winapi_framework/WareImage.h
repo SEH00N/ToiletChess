@@ -14,7 +14,10 @@ public:
     void Update() override;
 
 public:
+    void SetStat(int confidence, int height) { this->confidence = confidence; this->height = height; }
     void SetSlot(WareInventorySlot* slot) { this->slot = slot; }
+    int GetConfidence() { return confidence; }
+    int GetHeight() { return height; }
     WareInventorySlot* GetSlot() { return slot; }
     Texture* GetTexture() { return texture; }
 
@@ -28,5 +31,7 @@ private:
 private:
     WareInventorySlot* slot;
     Vec2 offset;
+    int confidence;
+    int height;
 };
 

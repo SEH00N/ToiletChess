@@ -2,6 +2,7 @@
 #include "Game_Scene.h"
 #include "Core.h"
 #include "Interface.h"
+#include "GameMgr.h"
 #include "Inventory.h"
 #include "WareSlot.h"
 #include "ToiletBoard.h"
@@ -11,6 +12,7 @@ void Game_Scene::Init()
 	LoadBackground();
 
 	board = new ToiletBoard();
+	GameMgr::GetInst()->SetBoard(board);
 
 	InitInventory();
 }
@@ -33,4 +35,6 @@ void Game_Scene::InitInventory()
 
 	inven1->Show();
 	inven2->Hide();
+
+	GameMgr::GetInst()->SetInventory(inven1, inven2, inven1);
 }
