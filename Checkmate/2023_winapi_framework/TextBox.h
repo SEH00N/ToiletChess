@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+
 class TextBox :
     public Object
 {
@@ -13,8 +14,11 @@ public:
 public:
     void SetText(wstring text) { this->text = text; }
     wstring GetText() { return text; }
+    void SetRender(bool enable) { this->renderable = enable; }
+    bool GetRender() { return renderable; }
 
 private:
     wstring text;
+    bool renderable;
 };
 

@@ -55,70 +55,91 @@ void WareSlot::OnMouseExit()
 		GameMgr::GetInst()->SetCurrentSlot(nullptr);
 }
 
-void WareSlot::SetWare(WareImage* ware)
+bool WareSlot::SetWare(WareImage* ware)
 {
-	SetWare(ware->GetTexture(), ware->GetConfidence(), ware->GetHeight());
+	return SetWare(ware->GetTexture(), ware->GetConfidence(), ware->GetHeight());
 }
 
-void WareSlot::SetWare(Texture* tex, int confidence, int height)
+bool WareSlot::SetWare(Texture* tex, int confidence, int height)
 {
 	this->wareTex = tex;
 	this->confidence = confidence;
 	this->height = height;
 
 	if (line == 0)
-		CheckSide();
+	{
+		if (CheckSide() == false)
+			return false;
+	}
 	else if (line == 1)
-		CheckFront();
+	{
+		if (CheckFront() == false)
+			return false;
+	}
 
 	GameMgr::GetInst()->ToggleInventory();
+	
+	return true;
 }
 
-void WareSlot::CheckSide()
+bool WareSlot::CheckSide()
 {
-	if (wareTex == nullptr)
-		return;
-
 	ToiletBoard* board = GameMgr::GetInst()->GetBoard();
 	WareSlot* left = board->GetSlot(line, index - 1);
 	WareSlot* right = board->GetSlot(line, index + 1);
 
-	if (left && left->wareTex)
-	{
-		bool isWin = CheckSide(left);
-		if (isWin)
-			left->ResetSlot();
-	}
+	bool leftWin = CheckSide(left);
+	bool rightWin = CheckSide(right);
 
-	if (right && right->wareTex)
+	if ((leftWin && rightWin) == false)
 	{
-		bool isWin = CheckSide(right);
-		if (isWin)
-			right->ResetSlot();
+		ResetSlot();
+		return false;
 	}
+	
+	if (leftWin && left)
+		left->ResetSlot();
+	if (rightWin && right)
+		right->ResetSlot();
+
+	return true;
 }
 
-void WareSlot::CheckFront()
+bool WareSlot::CheckFront()
 {
-	if (wareTex == nullptr)
-		return;
-
 	ToiletBoard* board = GameMgr::GetInst()->GetBoard();
 	WareSlot* front = board->GetSlot(line - 1, index);
 
-	if (front && front->wareTex)
+	bool isWin = CheckFront(front);
+	if (isWin)
 	{
-		bool isWin = CheckFront(front);
-		if (isWin)
-		{
-			Texture* tempTex = wareTex;
-			int tempConfidence = confidence;
-			int tempHeight = height;
-			ResetSlot();
+		Texture* tempTex = wareTex;
+		int tempConfidence = confidence;
+		int tempHeight = height;
+		ResetSlot();
 
-			front->SetWare(tempTex, tempConfidence, tempHeight);
-		}
+		front->SetWare(tempTex, tempConfidence, tempHeight);
 	}
+	else
+		ResetSlot();
+
+	return isWin;
+}
+
+bool WareSlot::CheckSide(WareSlot* other)
+{
+	if (other == nullptr || other->wareTex == nullptr)
+		return true;
+
+	return confidence > other->confidence;
+}
+
+bool WareSlot::CheckFront(WareSlot* other)
+{
+	if (other == nullptr || other->wareTex == nullptr)
+		return true;
+
+	return height > other->height;
 }
 
 void WareSlot::ResetSlot()

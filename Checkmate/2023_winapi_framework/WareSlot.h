@@ -17,14 +17,14 @@ public:
     void OnMouseExit() override;
 
 public:
-    void SetWare(WareImage* ware);
-    void SetWare(Texture* tex, int confidence, int height);
-    void CheckSide();
-    void CheckFront();
+    bool SetWare(WareImage* ware);
+    bool SetWare(Texture* tex, int confidence, int height);
+    bool CheckSide();
+    bool CheckFront();
 
 public:
-    bool CheckSide(WareSlot* other) { return confidence > other->confidence; }
-    bool CheckFront(WareSlot* other) { return height > other->height; }
+    bool CheckSide(WareSlot* other);// { return confidence > other->confidence; }
+    bool CheckFront(WareSlot* other);// { return height > other->height; }
     
 
 public:

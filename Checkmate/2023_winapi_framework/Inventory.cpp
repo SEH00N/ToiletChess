@@ -32,14 +32,22 @@ WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 	WareInventorySlot* slot = new WareInventorySlot({ 0, 0 }, slotScale, L"Slot");
 	WareImage* ware = new WareImage({ 0, 0 }, wareScale, wareName, wareName);
 
-	if (wareName == L"Anchovy")
+	if (wareName == L"Anchovy") {
 		ware->SetStat(1, 3);
-	else if(wareName == L"Employee")
+		slot->SetInfoText(L"[멸치]\r\n자신감 : 1\r\n키 : 3");
+	}
+	else if (wareName == L"Employee") {
 		ware->SetStat(2, 2);
-	else if(wareName == L"Pig")
+		slot->SetInfoText(L"[회사원]\r\n자신감 : 2\r\n키 : 2");
+	}
+	else if (wareName == L"Pig") {
 		ware->SetStat(4, 1);
-	else if(wareName == L"Athlete")
+		slot->SetInfoText(L"[문돼]\r\n자신감 : 4\r\n키 : 1");
+	}
+	else if (wareName == L"Athlete") {
 		ware->SetStat(3, 3);
+		slot->SetInfoText(L"[헬창]\r\n자신감 : 3\r\n키 : 3");
+	}
 
 	slot->SetWare(ware);
 	ware->SetSlot(slot);
@@ -47,6 +55,7 @@ WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 	std::shared_ptr<Scene> scene = SceneMgr::GetInst()->GetCurScene();
 	scene->AddObject(slot, OBJECT_GROUP::DEFAULT);
 	scene->AddObject(ware, OBJECT_GROUP::DEFAULT);
+	slot->InitTextBox();
 	
 	return slot;
 }
@@ -58,7 +67,6 @@ void Inventory::Show()
 		WareInventorySlot* ware = slots[i];
 		ware->SetRender(true);
 		ware->SetPos({ ware->GetPos().x, 600.0f });
-		ware->GetWare()->SetPos(ware->GetPos());
 	}
 }
 
@@ -69,6 +77,5 @@ void Inventory::Hide()
 		WareInventorySlot* ware = slots[i];
 		ware->SetRender(true);
 		ware->SetPos({ ware->GetPos().x, 6000.0f });
-		ware->GetWare()->SetPos(ware->GetPos());
 	}
 }

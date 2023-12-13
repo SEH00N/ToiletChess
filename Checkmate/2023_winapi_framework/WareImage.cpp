@@ -62,8 +62,10 @@ void WareImage::OnClicked(Vec2 pos)
 		SetPos(slot->GetPos());
 	else
 	{
-		currentSlot->SetWare(this);
-		EventMgr::GetInst()->DeleteObject(this);
+		if(currentSlot->SetWare(this))
+			EventMgr::GetInst()->DeleteObject(this);
+		else
+			SetPos(slot->GetPos());
 	}
 
 }
