@@ -51,7 +51,7 @@ ATOM BaseWindow::MyRegisterClass()
 void BaseWindow::WindowCreate()
 {
     int iWinposx = GetSystemMetrics(SM_CXSCREEN) / 2 - m_ptResolution.x / 2;
-    int iWinposy = GetSystemMetrics(SM_CYSCREEN) / 2 - m_ptResolution.y / 2;
+    int iWinposy = GetSystemMetrics(SM_CYSCREEN) / 2 - m_ptResolution.y / 2 - 50;
     
     m_hWnd = CreateWindowW(WINDOW_CLASS_NAME, L"Jun's Framework", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX,
         iWinposx, iWinposy, m_ptResolution.x, m_ptResolution.y, nullptr, nullptr, m_hInst, nullptr);

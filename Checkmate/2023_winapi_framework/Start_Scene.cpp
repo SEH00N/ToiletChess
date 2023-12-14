@@ -67,11 +67,17 @@ void Start_Scene::LoadBackground()
 
 void Start_Scene::LoadButtons()
 {
-	Button* startButton = new Button({ 640, 525 }, { 350, 95 }, L"StartButton", L"StartButton_Focused");
-	startButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
-	AddObject(startButton, OBJECT_GROUP::DEFAULT);
+	Vec2 resolution = Core::GetInst()->GetResolution();
 
-	Button* infoButton = new Button({ 640, 640 }, { 350, 95 }, L"InfoButton", L"InfoButton_Focused");
-	infoButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
-	AddObject(infoButton, OBJECT_GROUP::DEFAULT);
+	Button* startButton = new Button({ resolution.x / 2 - 225, 575.0f }, { 350, 95 }, L"StartButton", L"StartButton_Focused");
+	startButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
+	AddObject(startButton);
+
+	Button* infoButton = new Button({ resolution.x / 2 + 225, 575.0f }, { 350, 95 }, L"InfoButton", L"InfoButton_Focused");
+	infoButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Result_Scene"); });
+	AddObject(infoButton);
+
+	Button* exitButton = new Button({ resolution.x - 65, resolution.y - 65 }, { 85, 85 }, L"Slot", L"Slot");
+	exitButton->RegisterClicked([]() {PostQuitMessage(0); });
+	AddObject(exitButton);
 }

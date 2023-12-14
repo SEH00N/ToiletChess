@@ -10,7 +10,7 @@
 void Game_Scene::Init()
 {
 	LoadBackground();
-	LoadText();
+	LoadTopPanel();
 
 	board = new ToiletBoard();
 	GameMgr::GetInst()->SetBoard(board);
@@ -29,7 +29,7 @@ void Game_Scene::LoadBackground()
 	AddObject(bg, OBJECT_GROUP::DEFAULT);
 }
 
-void Game_Scene::LoadText()
+void Game_Scene::LoadTopPanel()
 {
 	Vec2 resolution = Core::GetInst()->GetResolution();
 
@@ -40,6 +40,8 @@ void Game_Scene::LoadText()
 	noticeText->SetTransparent(true);
 	GameMgr::GetInst()->SetNoticeText(noticeText);
 	AddObject(noticeText);
+
+
 }
 
 void Game_Scene::InitInventory()

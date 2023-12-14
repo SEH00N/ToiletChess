@@ -6,8 +6,7 @@ class Action;
 
 class Inventory;
 
-class Start_Scene :
-    public Scene
+class Start_Scene : public Scene
 {
 public:
     virtual void Init() override;

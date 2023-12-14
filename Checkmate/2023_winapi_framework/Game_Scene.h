@@ -4,15 +4,14 @@
 class Inventory;
 class ToiletBoard;
 
-class Game_Scene :
-    public Scene
+class Game_Scene : public Scene
 {
 public:
     virtual void Init() override;
 
 public:
     void LoadBackground();
-    void LoadText();
+    void LoadTopPanel();
     void InitInventory();
 
 private:
