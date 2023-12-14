@@ -20,11 +20,12 @@ public:
 	void SetCurrentWare(WareImage* i) { currentWare = i; }
 	void SetCurrentSlot(WareSlot* i) { currentSlot = i; }
 	void SetBoard(ToiletBoard* i) { board = i; }
-	void SetNoticeText(TextBox* textBox) { this->noticeTextBox = textBox; }
 	void SetPlayerImage(ToggleImage* left, ToggleImage* right) {
 		this->leftPlayerImage = left;
 		this->rightPlayerImage = right;
 	}
+	void SetNoticeText(TextBox* textBox) { this->noticeTextBox = textBox; }
+	void SetNotice(wstring text);
 
 public:
 	void ToggleInventory();

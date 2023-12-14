@@ -71,8 +71,9 @@ void WareImage::OnClicked(Vec2 pos)
 			
 			if (game->CheckEnd())
 			{
-				Sleep(500);
-				GameMgr::GetInst()->CalculatePlayerScore();
+				Sleep(1000);
+				game->SetNotice(L"CHECK MATE!");
+				game->CalculatePlayerScore();
 				SceneMgr::GetInst()->LoadScene(L"Result_Scene");
 			}
 			else

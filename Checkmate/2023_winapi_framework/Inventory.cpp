@@ -61,6 +61,15 @@ WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 	return slot;
 }
 
+bool Inventory::IsEmpty()
+{
+	for (int i = 0; i < slots.size(); ++i)
+		if (slots[i]->GetWare() != nullptr)
+			return false;
+			
+	return true;
+}
+
 void Inventory::Show()
 {
 	for (int i = 0; i < slots.size(); ++i)

@@ -7,14 +7,14 @@
 
 ToiletBoard::ToiletBoard()
 {
-	slots = std::vector<std::vector<WareSlot*>>(2, std::vector<WareSlot*>(10));
+	slots = std::vector<std::vector<WareSlot*>>(2, std::vector<WareSlot*>(BoardRow));
 
 	std::shared_ptr<Scene> scene = SceneMgr::GetInst()->GetCurScene();
 
 	for (int i = 0; i < BoardRow; ++i)
 	{
-		slots[0][i] = new WareSlot({ 100 + i * 120, 300 }, { 90*0.75f, 140*0.75f }, L"Urinal");
-		slots[1][i] = new WareSlot({ 100 + i * 120, 415 }, { 90*0.75f, 90*0.75f }, L"Slot");
+		slots[0][i] = new WareSlot({ 150 + i * 195, 300 }, { 90*0.75f, 140*0.75f }, L"Urinal");
+		slots[1][i] = new WareSlot({ 150 + i * 195, 415 }, { 90*0.75f, 90*0.75f }, L"Slot");
 
 		slots[0][i]->SetID(0, i);
 		slots[1][i]->SetID(1, i);

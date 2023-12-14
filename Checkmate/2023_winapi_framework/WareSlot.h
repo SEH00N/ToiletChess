@@ -25,6 +25,8 @@ public:
 public:
     bool CheckSide(WareSlot* other);// { return confidence > other->confidence; }
     bool CheckFront(WareSlot* other);// { return height > other->height; }
+    bool CheckSide(int confidence) { return this->confidence > confidence; }
+    bool CheckFront(int height) { return this->height > height; }
     bool IsEmpty() { return (wareTex == nullptr); }
 
 public:
@@ -35,6 +37,8 @@ public:
     int GetLine() { return line; }
     int GetIndex() { return index; }
     int GetOwner() { return owner; }
+    int GetConfidence() { return confidence; }
+    int GetHeight() { return height; }
 
 private:
     int index;

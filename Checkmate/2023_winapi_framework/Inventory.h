@@ -14,6 +14,7 @@ private:
 
 public:
 	std::vector<WareInventorySlot*>& GetWares() { return slots; }
+	bool IsEmpty();
 
 public:
 	void Show();

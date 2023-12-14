@@ -5,6 +5,12 @@
 #include "ToiletBoard.h"
 #include "WareSlot.h"
 #include "ToggleImage.h"
+#include "WareImage.h"
+
+void GameMgr::SetNotice(wstring text)
+{
+	this->noticeTextBox->SetText(text);
+}
 
 void GameMgr::ToggleInventory()
 {
@@ -14,7 +20,7 @@ void GameMgr::ToggleInventory()
 		inven2->Show();
 		currentInven = inven2;
 
-		noticeTextBox->SetText(L"플레이어 2 차례!");
+		SetNotice(L"플레이어 2 차례!");
 	}
 	else
 	{
@@ -22,7 +28,7 @@ void GameMgr::ToggleInventory()
 		inven2->Hide();
 		currentInven = inven1;
 
-		noticeTextBox->SetText(L"플레이어 1 차례!");
+		SetNotice(L"플레이어 1 차례!");
 	}
 
 	leftPlayerImage->ToggleTexture();
@@ -51,13 +57,17 @@ void GameMgr::CalculatePlayerScore()
 
 bool GameMgr::CheckEnd()
 {
-	std::vector<WareInventorySlot*>& wares = currentInven->GetWares();
+	std::vector<WareInventorySlot*>& wares = ((currentInven == inven1) ? inven2->GetWares() : inven1->GetWares());
 	bool isEnd = true;
 
 	for (int i = 0; i < wares.size(); ++i)
 	{
-		if (wares[i]->GetWare() == nullptr)
+		WareImage* ware = wares[i]->GetWare();
+		if (ware == nullptr)
 			continue;
+
+		int confidence = ware->GetConfidence();
+		int height = ware->GetHeight();
 
 		board->ForeachSlot([&, this](WareSlot* slot, int line, int index) {
 			if (slot->IsEmpty() == false)
@@ -65,8 +75,16 @@ bool GameMgr::CheckEnd()
 
 			if (slot->GetLine() == 0) // 소변기
 			{
-				bool leftWin = slot->CheckSide(board->GetSlot(line, index - 1));
-				bool rightWin = slot->CheckSide(board->GetSlot(line, index + 1));
+				WareSlot* left = board->GetSlot(line, index - 1);
+				WareSlot* right = board->GetSlot(line, index + 1);
+				bool leftWin = false;
+				bool rightWin = false;
+
+				if (left)
+					left->CheckSide(confidence);
+				if (right)
+					right->CheckSide(confidence);
+
 				if (leftWin && rightWin) // 하나라도 둘 수 있는 수가 있으면 끝내기
 				{
 					isEnd = false;
@@ -75,7 +93,25 @@ bool GameMgr::CheckEnd()
 			}
 			else if (slot->GetLine() == 1) // 대기줄
 			{
-				bool win = slot->CheckFront(board->GetSlot(line - 1, index));
+				WareSlot* front = board->GetSlot(line - 1, index);
+				bool win = false;
+				if (front)
+					win = height > front->GetHeight();
+				else
+				{
+					WareSlot* left = board->GetSlot(line - 1, index - 1);
+					WareSlot* right = board->GetSlot(line - 1, index + 1);
+					bool leftWin = false;
+					bool rightWin = false;
+
+					if (left)
+						left->CheckSide(confidence);
+					if (right)
+						right->CheckSide(confidence);
+
+					win = leftWin && rightWin;
+				}
+
 				if (win)
 				{
 					isEnd = false;
@@ -83,6 +119,12 @@ bool GameMgr::CheckEnd()
 				}
 			}
 		});
+	}
+
+	if (isEnd == true && currentInven->IsEmpty()) // 낼 수 있는 수가 없는데 현재 인벤이 비었기 때문에 그런 거라면
+	{
+		Inventory* other = ((currentInven == inven1) ? inven2 : inven1);
+		isEnd &= other->IsEmpty(); // 다른 인벤도 비었는지 확인
 	}
 
 	return isEnd;
