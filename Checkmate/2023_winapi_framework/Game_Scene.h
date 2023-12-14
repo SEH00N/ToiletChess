@@ -12,6 +12,7 @@ public:
 
 public:
     void LoadBackground();
+    void LoadText();
     void InitInventory();
 
 private:

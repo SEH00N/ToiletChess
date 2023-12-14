@@ -4,6 +4,7 @@ class WareImage;
 class WareSlot;
 class ToiletBoard;
 class Inventory;
+class TextBox;
 
 class GameMgr
 {
@@ -18,9 +19,11 @@ public:
 	void SetCurrentWare(WareImage* i) { currentWare = i; }
 	void SetCurrentSlot(WareSlot* i) { currentSlot = i; }
 	void SetBoard(ToiletBoard* i) { board = i; }
+	void SetNoticeText(TextBox* textBox) { this->noticeTextBox = textBox; }
 
 public:
 	void ToggleInventory();
+	bool CheckEnd();
 
 private:
 	WareImage* currentWare;
@@ -29,5 +32,6 @@ private:
 	Inventory* inven1;
 	Inventory* inven2;
 	Inventory* currentInven;
+	TextBox* noticeTextBox;
 };
 

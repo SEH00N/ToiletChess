@@ -16,9 +16,15 @@ public:
     wstring GetText() { return text; }
     void SetRender(bool enable) { this->renderable = enable; }
     bool GetRender() { return renderable; }
+    void SetFormat(unsigned int format) { this->format = format; }
+    void SetTransparent(bool transparent) { this->transparent = transparent; }
+    void SetFont(HFONT font) { this->font = font; }
 
 private:
     wstring text;
+    HFONT font;
     bool renderable;
+    bool transparent;
+    unsigned int format;
 };
 

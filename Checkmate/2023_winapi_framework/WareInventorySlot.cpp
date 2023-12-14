@@ -11,6 +11,7 @@ WareInventorySlot::WareInventorySlot(Vec2 pos, Vec2 scale, wstring texName) : In
 	SetTexture(texName);
 	textBox = new TextBox(GetPos(), GetScale(), L"");
 	textBox->SetRender(false);
+	textBox->SetFormat(DT_LEFT);
 }
 
 void WareInventorySlot::OnMouseEnter()

@@ -9,8 +9,8 @@
 #include "WareInventorySlot.h"
 #include "WareSlot.h"
 
-WareImage::WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName) 
-	: Button(pos, scale, defaultTexName, focusedTexName), slot{ nullptr }, offset{Vec2(0, 0)}
+WareImage::WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName, int owner)
+	: Button(pos, scale, defaultTexName, focusedTexName), slot{ nullptr }, offset{ Vec2(0, 0) }, owner{ owner }
 {
 	RegisterPressed([this]() {OnPressed(KeyMgr::GetInst()->GetMousePos()); });
 	RegisterClicked([this]() {OnClicked(KeyMgr::GetInst()->GetMousePos()); });
@@ -62,8 +62,16 @@ void WareImage::OnClicked(Vec2 pos)
 		SetPos(slot->GetPos());
 	else
 	{
-		if(currentSlot->SetWare(this))
+		if (currentSlot->SetWare(this))
+		{
 			EventMgr::GetInst()->DeleteObject(this);
+			GameMgr* game = GameMgr::GetInst();
+			
+			if (game->CheckEnd())
+				SceneMgr::GetInst()->LoadScene(L"Info_Scene");
+			else
+				game->ToggleInventory();
+		}
 		else
 			SetPos(slot->GetPos());
 	}

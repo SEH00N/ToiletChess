@@ -3,6 +3,7 @@
 #include "WareSlot.h"
 #include "Scene.h"
 #include "SceneMgr.h"
+#include <functional>
 
 ToiletBoard::ToiletBoard()
 {
@@ -36,4 +37,19 @@ WareSlot* ToiletBoard::GetSlot(int line, int index)
 		return nullptr;
 
 	return slots[line][index];
+}
+
+void ToiletBoard::ForeachSlot(std::function<bool(WareSlot*, int, int)> callback)
+{
+	for (int i = 0; i < slots.size(); ++i)
+	{
+		for (int j = 0; j < slots[i].size(); ++j)
+		{
+			if (callback)
+			{
+				if (callback(slots[i][j], i, j))
+					return;
+			}
+		}
+	}
 }

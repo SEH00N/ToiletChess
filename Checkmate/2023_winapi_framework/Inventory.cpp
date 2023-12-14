@@ -4,7 +4,7 @@
 #include "SceneMgr.h"
 #include "Scene.h"
 
-Inventory::Inventory()
+Inventory::Inventory(int owner) : owner{owner}
 {
 	slots = std::vector<WareInventorySlot*>(5);
 
@@ -29,8 +29,9 @@ WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 {
 	Vec2 slotScale = { 140, 140 };
 	Vec2 wareScale = { 125, 125 };
+	wstring wareColor = owner == 1 ? L"Blue" : L"Red";
 	WareInventorySlot* slot = new WareInventorySlot({ 0, 0 }, slotScale, L"Slot");
-	WareImage* ware = new WareImage({ 0, 0 }, wareScale, wareName, wareName);
+	WareImage* ware = new WareImage({ 0, 0 }, wareScale, wareName + wareColor, wareName + wareColor, owner);
 
 	if (wareName == L"Anchovy") {
 		ware->SetStat(1, 3);

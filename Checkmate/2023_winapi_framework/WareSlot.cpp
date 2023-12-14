@@ -40,7 +40,8 @@ void WareSlot::Render(HDC hDC)
 
 void WareSlot::OnMouseEnter()
 {
-	GameMgr::GetInst()->SetCurrentSlot(this);
+	if(IsEmpty())
+		GameMgr::GetInst()->SetCurrentSlot(this);
 
 	WareImage* ware = GameMgr::GetInst()->GetCurrentWare();
 	if (ware == nullptr)
@@ -57,14 +58,15 @@ void WareSlot::OnMouseExit()
 
 bool WareSlot::SetWare(WareImage* ware)
 {
-	return SetWare(ware->GetTexture(), ware->GetConfidence(), ware->GetHeight());
+	return SetWare(ware->GetTexture(), ware->GetConfidence(), ware->GetHeight(), ware->GetOwner());
 }
 
-bool WareSlot::SetWare(Texture* tex, int confidence, int height)
+bool WareSlot::SetWare(Texture* tex, int confidence, int height, int owner)
 {
 	this->wareTex = tex;
 	this->confidence = confidence;
 	this->height = height;
+	this->owner = owner;
 
 	if (line == 0)
 	{
@@ -77,8 +79,7 @@ bool WareSlot::SetWare(Texture* tex, int confidence, int height)
 			return false;
 	}
 
-	GameMgr::GetInst()->ToggleInventory();
-	
+	Sleep(100);
 	return true;
 }
 
@@ -116,9 +117,10 @@ bool WareSlot::CheckFront()
 		Texture* tempTex = wareTex;
 		int tempConfidence = confidence;
 		int tempHeight = height;
+		int tempOwner = owner;
 		ResetSlot();
 
-		front->SetWare(tempTex, tempConfidence, tempHeight);
+		front->SetWare(tempTex, tempConfidence, tempHeight, tempOwner);
 	}
 	else
 		ResetSlot();
@@ -148,4 +150,5 @@ void WareSlot::ResetSlot()
 	wareTex = nullptr;
 	confidence = 0;
 	height = 0;
+	owner = 0;
 }

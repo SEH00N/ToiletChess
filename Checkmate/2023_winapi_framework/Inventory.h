@@ -3,7 +3,7 @@
 class Inventory
 {
 public:
-	Inventory();
+	Inventory(int owner);
 	~Inventory();
 
 private:
@@ -13,7 +13,13 @@ private:
 	WareInventorySlot* CreateSlot(wstring wareName);
 
 public:
+	std::vector<WareInventorySlot*>& GetWares() { return slots; }
+
+public:
 	void Show();
 	void Hide();
+
+private:
+	int owner;
 };
 

@@ -7,7 +7,7 @@ class WareImage :
     public Button
 {
 public:
-    WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName);
+    WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName, int owner);
     ~WareImage();
 
 public:
@@ -18,6 +18,7 @@ public:
     void SetSlot(WareInventorySlot* slot) { this->slot = slot; }
     int GetConfidence() { return confidence; }
     int GetHeight() { return height; }
+    int GetOwner() { return owner; }
     WareInventorySlot* GetSlot() { return slot; }
     Texture* GetTexture() { return texture; }
 
@@ -33,5 +34,6 @@ private:
     Vec2 offset;
     int confidence;
     int height;
+    int owner;
 };
 
