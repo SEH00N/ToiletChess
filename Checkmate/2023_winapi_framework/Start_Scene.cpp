@@ -74,7 +74,7 @@ void Start_Scene::LoadButtons()
 	AddObject(startButton);
 
 	Button* infoButton = new Button({ resolution.x / 2 + 225, 575.0f }, { 350, 95 }, L"InfoButton", L"InfoButton_Focused");
-	infoButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Result_Scene"); });
+	infoButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
 	AddObject(infoButton);
 
 	Button* exitButton = new Button({ resolution.x - 65, resolution.y - 65 }, { 85, 85 }, L"ExitButton", L"ExitButton_Focused");
