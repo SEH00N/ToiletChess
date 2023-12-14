@@ -29,7 +29,7 @@ WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 {
 	Vec2 slotScale = { 140, 140 };
 	Vec2 wareScale = { 125, 125 };
-	wstring wareColor = owner == 1 ? L"Blue" : L"Red";
+	wstring wareColor = owner == 1 ? L"Red" : L"Blue";
 	WareInventorySlot* slot = new WareInventorySlot({ 0, 0 }, slotScale, L"Slot");
 	WareImage* ware = new WareImage({ 0, 0 }, wareScale, wareName + wareColor, wareName + wareColor, owner);
 

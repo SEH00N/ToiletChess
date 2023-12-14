@@ -201,6 +201,7 @@
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TimeMgr.h" />
+    <ClInclude Include="ToggleImage.h" />
     <ClInclude Include="ToiletBoard.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="WareImage.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TimeMgr.cpp" />
+    <ClCompile Include="ToggleImage.cpp" />
     <ClCompile Include="ToiletBoard.cpp" />
     <ClCompile Include="Vec2.cpp" />
     <ClCompile Include="WareImage.cpp" />

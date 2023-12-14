@@ -5,6 +5,7 @@ class WareSlot;
 class ToiletBoard;
 class Inventory;
 class TextBox;
+class ToggleImage;
 
 class GameMgr
 {
@@ -20,10 +21,19 @@ public:
 	void SetCurrentSlot(WareSlot* i) { currentSlot = i; }
 	void SetBoard(ToiletBoard* i) { board = i; }
 	void SetNoticeText(TextBox* textBox) { this->noticeTextBox = textBox; }
+	void SetPlayerImage(ToggleImage* left, ToggleImage* right) {
+		this->leftPlayerImage = left;
+		this->rightPlayerImage = right;
+	}
 
 public:
 	void ToggleInventory();
+	void CalculatePlayerScore();
 	bool CheckEnd();
+
+private:
+	int player1Score;
+	int player2Score;
 
 private:
 	WareImage* currentWare;
@@ -33,5 +43,7 @@ private:
 	Inventory* inven2;
 	Inventory* currentInven;
 	TextBox* noticeTextBox;
+	ToggleImage* leftPlayerImage;
+	ToggleImage* rightPlayerImage;
 };
 

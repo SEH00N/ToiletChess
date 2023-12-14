@@ -27,7 +27,8 @@ void WareInventorySlot::OnMouseExit()
 void WareInventorySlot::SetPos(Vec2 pos)
 {
 	Interface::SetPos(pos);
-	ware->SetPos(pos);
+	if(ware)
+		ware->SetPos(pos);
 	textBox->SetPos(pos);
 }
 

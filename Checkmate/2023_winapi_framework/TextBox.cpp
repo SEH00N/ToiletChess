@@ -30,7 +30,11 @@ void TextBox::Render(HDC hDC)
 	Vec2 pos = GetPos();
 	Vec2 scale = GetScale();
 	//RECT rt = RECT_MAKE(pos.x, pos.y, scale.x, scale.y);
-	RECT rt = { pos.x, pos.y, pos.x + scale.x, pos.y + scale.y };
+	float xScale = scale.x / 2;
+	float yScale = scale.y / 2;
+	RECT rt = { pos.x - xScale, pos.y - yScale, pos.x + xScale, pos.y + yScale };
+
+	//Rectangle(hDC, rt.left, rt.top, rt.right, rt.bottom);
 
 	DrawText(hDC, text.c_str(), -1, &rt, format);
 

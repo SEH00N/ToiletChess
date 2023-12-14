@@ -64,11 +64,17 @@ void WareImage::OnClicked(Vec2 pos)
 	{
 		if (currentSlot->SetWare(this))
 		{
-			EventMgr::GetInst()->DeleteObject(this);
+			slot->SetWare(nullptr);
+			renderable = false;
+			//EventMgr::GetInst()->DeleteObject(this);
 			GameMgr* game = GameMgr::GetInst();
 			
 			if (game->CheckEnd())
-				SceneMgr::GetInst()->LoadScene(L"Info_Scene");
+			{
+				Sleep(500);
+				GameMgr::GetInst()->CalculatePlayerScore();
+				SceneMgr::GetInst()->LoadScene(L"Result_Scene");
+			}
 			else
 				game->ToggleInventory();
 		}

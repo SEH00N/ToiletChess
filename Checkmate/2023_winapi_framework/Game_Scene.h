@@ -11,6 +11,7 @@ public:
 
 public:
     void LoadBackground();
+    void LoadButtons();
     void LoadTopPanel();
     void InitInventory();
 

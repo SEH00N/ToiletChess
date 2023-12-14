@@ -4,6 +4,7 @@
 #include "TextBox.h"
 #include "ToiletBoard.h"
 #include "WareSlot.h"
+#include "ToggleImage.h"
 
 void GameMgr::ToggleInventory()
 {
@@ -23,7 +24,30 @@ void GameMgr::ToggleInventory()
 
 		noticeTextBox->SetText(L"플레이어 1 차례!");
 	}
+
+	leftPlayerImage->ToggleTexture();
+	rightPlayerImage->ToggleTexture();
 }
+
+void GameMgr::CalculatePlayerScore()
+{
+	int player1 = 0, player2 = 0;
+	board->ForeachSlot([&](WareSlot* slot, int line, int index) {
+		if(slot->IsEmpty())
+			return false;
+			
+		if (slot->GetOwner() == 1)
+			player1++;
+		else if (slot->GetOwner() == 2)
+			player2++;
+
+		return false;
+	});
+
+	this->player1Score = player1;
+	this->player2Score = player2;
+}
+
 
 bool GameMgr::CheckEnd()
 {
@@ -32,7 +56,7 @@ bool GameMgr::CheckEnd()
 
 	for (int i = 0; i < wares.size(); ++i)
 	{
-		if (wares[i] == nullptr)
+		if (wares[i]->GetWare() == nullptr)
 			continue;
 
 		board->ForeachSlot([&, this](WareSlot* slot, int line, int index) {
