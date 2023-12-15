@@ -49,7 +49,10 @@ void Info_Scene::LoadExplane(Vec2 pos, wstring title, wstring content)
 	tPos.y += scale.y / 2;
 	Interface* titleBG = new Interface(tPos, scale);
 	titleBG->SetTexture(L"ExplanePanel");
-	TextBox* titleText = new TextBox(tPos, scale, title);
+
+	TextBox* titleText = new TextBox(tPos + Vec2(0, 3), scale, title);
+	HFONT titleFont = CreateFont(24, 16, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Tenada"));
+	titleText->SetFont(titleFont);
 	titleText->SetTransparent(true);
 	titleText->SetFormat(DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 
@@ -59,7 +62,10 @@ void Info_Scene::LoadExplane(Vec2 pos, wstring title, wstring content)
 	tPos.y += scale.y / 2 + 70;
 	Interface* contentBG = new Interface(tPos - Vec2(10, 10), scale + Vec2(20, 20));
 	contentBG->SetTexture(L"ExplanePanel");
+
 	TextBox* contentText = new TextBox(tPos, scale, content);
+	HFONT contentFont = CreateFont(18, 12, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("소요단풍체 볼드 TTF"));
+	contentText->SetFont(contentFont);
 	contentText->SetTransparent(true);
 	contentText->SetFormat(DT_LEFT);
 
@@ -84,8 +90,10 @@ void Info_Scene::LoadWare(Vec2 pos, wstring name, wstring displayName, int confi
 	scale = { 300, 85 };
 	tPos.x += scale.x / 2 + 150 + 10;
 	tPos.y += scale.y / 2 + 10;
-	TextBox* contentText = new TextBox(tPos + Vec2(5, 0), scale,
+	TextBox* contentText = new TextBox(tPos + Vec2(10, -10), scale,
 		L"\n[" + displayName + L"]\n자신감 : " + std::to_wstring(confidence) + L"\n키 : " + std::to_wstring(height));
+	HFONT contentFont = CreateFont(20, 8, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("배달의민족 주아"));
+	contentText->SetFont(contentFont);
 	contentText->SetTransparent(true);
 	contentText->SetFormat(DT_LEFT);
 
