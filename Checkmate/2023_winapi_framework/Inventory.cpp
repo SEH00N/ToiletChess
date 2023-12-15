@@ -35,19 +35,19 @@ WareInventorySlot* Inventory::CreateSlot(wstring wareName)
 
 	if (wareName == L"Anchovy") {
 		ware->SetStat(1, 3);
-		slot->SetInfoText(L"[멸치]\r\n자신감 : 1\r\n키 : 3");
+		slot->SetInfoText(L" [멸치] \n 자신감 : 1 \n 키 : 3 ");
 	}
 	else if (wareName == L"Employee") {
 		ware->SetStat(2, 2);
-		slot->SetInfoText(L"[회사원]\r\n자신감 : 2\r\n키 : 2");
+		slot->SetInfoText(L" [회사원] \n 자신감 : 2 \n 키 : 2 ");
 	}
 	else if (wareName == L"Pig") {
 		ware->SetStat(4, 1);
-		slot->SetInfoText(L"[문돼]\r\n자신감 : 4\r\n키 : 1");
+		slot->SetInfoText(L" [문돼] \n 자신감 : 4 \n 키 : 1 ");
 	}
 	else if (wareName == L"Athlete") {
 		ware->SetStat(3, 3);
-		slot->SetInfoText(L"[헬창]\r\n자신감 : 3\r\n키 : 3");
+		slot->SetInfoText(L" [헬창] \n 자신감 : 3 \n 키 : 3 ");
 	}
 
 	slot->SetWare(ware);

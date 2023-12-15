@@ -47,7 +47,7 @@ void Game_Scene::LoadTopPanel()
 	Vec2 resolution = Core::GetInst()->GetResolution();
 
 	TextBox* noticeText = new TextBox({ resolution.x / 2, 125.0f }, { 1000, 100 }, L"");
-	HFONT font = CreateFont(80, 40, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, L"");
+	HFONT font = CreateFont(90, 60, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Tenada"));
 	noticeText->SetFont(font);
 	noticeText->SetFormat(DT_CENTER | DT_VCENTER);
 	noticeText->SetTransparent(true);
@@ -64,7 +64,7 @@ void Game_Scene::LoadTopPanel()
 
 	GameMgr::GetInst()->SetPlayerImage(left, right);
 	
-	HFONT toggleFont = CreateFont(60, 30, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, L"");
+	HFONT toggleFont = CreateFont(60, 24, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("배달의민족 주아"));
 
 	TextBox* p1Text = new TextBox({ 75, 75 }, { 120, 120 }, L"P1");
 	p1Text->SetFont(toggleFont);

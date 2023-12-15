@@ -26,6 +26,14 @@ public:
 	}
 	void SetNoticeText(TextBox* textBox) { this->noticeTextBox = textBox; }
 	void SetNotice(wstring text);
+	Inventory* GetWinner() { return winner; }
+	int GetPlayerScore(int playerID) {
+		if (playerID == 1)
+			return player1Score;
+		else if (playerID == 2)
+			return player2Score;
+		return 0;
+	};
 
 public:
 	void ToggleInventory();
@@ -46,5 +54,6 @@ private:
 	TextBox* noticeTextBox;
 	ToggleImage* leftPlayerImage;
 	ToggleImage* rightPlayerImage;
+	Inventory* winner;
 };
 

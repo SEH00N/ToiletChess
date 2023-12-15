@@ -126,11 +126,18 @@ bool GameMgr::CheckEnd()
 		});
 	}
 
+	bool hasWinner = true;
 	if (isEnd == true && currentInven->IsEmpty()) // 낼 수 있는 수가 없는데 현재 인벤이 비었기 때문에 그런 거라면
 	{
 		Inventory* other = ((currentInven == inven1) ? inven2 : inven1);
 		isEnd &= other->IsEmpty(); // 다른 인벤도 비었는지 확인
+
+		if (isEnd)
+			hasWinner = false;
 	}
+
+	if (isEnd && hasWinner)
+		winner = currentInven;
 
 	return isEnd;
 }

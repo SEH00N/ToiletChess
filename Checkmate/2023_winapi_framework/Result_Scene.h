@@ -6,7 +6,9 @@ public:
     virtual void Init() override;
 
 private:
-    void LoadPanels();
+    void LoadBackground();
+    void LoadTopPanel();
+    void LoadBottomPanel();
     void LoadButtons();
 };
 

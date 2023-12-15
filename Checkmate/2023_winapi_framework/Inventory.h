@@ -14,6 +14,7 @@ private:
 
 public:
 	std::vector<WareInventorySlot*>& GetWares() { return slots; }
+	int GetOwner() { return owner; }
 	bool IsEmpty();
 
 public:
