@@ -11,6 +11,6 @@ private:
 
 private:
     void LoadExplane(Vec2 pos, wstring title, wstring content);
-    void LoadWare(Vec2 pos, wstring name, int confidence, int height);
+    void LoadWare(Vec2 pos, wstring name, wstring displayName, int confidence, int height);
 };
 

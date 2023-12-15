@@ -35,10 +35,10 @@ void Info_Scene::LoadLeftPanel()
 
 void Info_Scene::LoadRightPanel()
 {
-	LoadWare({ 700, 50 }, L"Anchovy", 10, 10);
-	LoadWare({ 700, 175 }, L"Employee", 10, 10);
-	LoadWare({ 700, 300 }, L"Pig", 10, 10);
-	LoadWare({ 700, 425 }, L"Athlete", 10, 10);
+	LoadWare({ 700, 50 }, L"Anchovy", L"¸êÄ¡", 1, 3);
+	LoadWare({ 700, 175 }, L"Employee", L"È¸»ç¿ø", 2, 2);
+	LoadWare({ 700, 300 }, L"Pig", L"¹®µÅ", 4, 1);
+	LoadWare({ 700, 425 }, L"Athlete", L"ÇïÃ¢", 3, 3);
 }
 
 void Info_Scene::LoadExplane(Vec2 pos, wstring title, wstring content)
@@ -69,7 +69,7 @@ void Info_Scene::LoadExplane(Vec2 pos, wstring title, wstring content)
 	AddObject(contentText);
 }
 
-void Info_Scene::LoadWare(Vec2 pos, wstring name, int confidence, int height)
+void Info_Scene::LoadWare(Vec2 pos, wstring name, wstring displayName, int confidence, int height)
 {
 	Vec2 tPos = pos;
 	Vec2 scale = { 85, 85 };
@@ -84,7 +84,8 @@ void Info_Scene::LoadWare(Vec2 pos, wstring name, int confidence, int height)
 	scale = { 300, 85 };
 	tPos.x += scale.x / 2 + 150 + 10;
 	tPos.y += scale.y / 2 + 10;
-	TextBox* contentText = new TextBox(tPos, scale, L"¾È³ç");
+	TextBox* contentText = new TextBox(tPos + Vec2(5, 0), scale,
+		L"\n[" + displayName + L"]\nÀÚ½Å°¨ : " + std::to_wstring(confidence) + L"\nÅ° : " + std::to_wstring(height));
 	contentText->SetTransparent(true);
 	contentText->SetFormat(DT_LEFT);
 
