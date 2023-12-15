@@ -71,10 +71,13 @@ void WareImage::OnClicked(Vec2 pos)
 			
 			if (game->CheckEnd())
 			{
-				Sleep(1000);
 				game->SetNotice(L"CHECK MATE!");
 				game->CalculatePlayerScore();
-				SceneMgr::GetInst()->LoadScene(L"Result_Scene");
+
+				EventMgr::GetInst()->DelayCallback([&game]() {
+					Sleep(1000);
+					SceneMgr::GetInst()->LoadScene(L"Result_Scene");
+				});
 			}
 			else
 				game->ToggleInventory();

@@ -95,7 +95,7 @@ bool GameMgr::CheckEnd()
 			{
 				WareSlot* front = board->GetSlot(line - 1, index);
 				bool win = false;
-				if (front)
+				if (front->IsEmpty() == false)
 					win = height > front->GetHeight();
 				else
 				{
@@ -104,10 +104,15 @@ bool GameMgr::CheckEnd()
 					bool leftWin = false;
 					bool rightWin = false;
 
-					if (left)
-						left->CheckSide(confidence);
-					if (right)
-						right->CheckSide(confidence);
+					if (left && (left->IsEmpty() == false))
+						leftWin = slot->CheckSide(left->GetConfidence());
+					else
+						leftWin = true;
+
+					if (right && (right->IsEmpty() == false))
+						rightWin = slot->CheckSide(right->GetConfidence());
+					else
+						rightWin = true;
 
 					win = leftWin && rightWin;
 				}

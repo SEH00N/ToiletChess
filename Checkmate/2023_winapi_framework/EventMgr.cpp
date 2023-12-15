@@ -15,6 +15,17 @@ void EventMgr::Update()
 		Excute(m_vecEvent[i]);
 	}
 	m_vecEvent.clear();
+
+	if (callbacks == true)
+	{
+		for (size_t i = 0; i < m_vecCallback.size(); ++i)
+		{
+			if (m_vecCallback[i])
+				m_vecCallback[i]();
+		}
+		m_vecCallback.clear();
+		callbacks = false;
+	}
 }
 
 void EventMgr::DeleteObject(Object* _pObj)
@@ -22,6 +33,14 @@ void EventMgr::DeleteObject(Object* _pObj)
 	tEvent eve = {};
 	eve.eEve = EVENT_TYPE::DELETE_OBJECT;
 	eve.Obj = _pObj;
+	m_vecEvent.push_back(eve);
+}
+
+void EventMgr::DelayCallback(std::function<void()> callback)
+{
+	tEvent eve = {};
+	eve.eEve = EVENT_TYPE::DELAY_FRAME;
+	m_vecCallback.push_back(callback);
 	m_vecEvent.push_back(eve);
 }
 
@@ -39,6 +58,9 @@ void EventMgr::Excute(const tEvent& _eve)
 	case EVENT_TYPE::CREATE_OBJECT:
 		break;
 	case EVENT_TYPE::SCENE_CHANGE:
+		break;
+	case EVENT_TYPE::DELAY_FRAME:
+		callbacks = true;
 		break;
 	}
 }

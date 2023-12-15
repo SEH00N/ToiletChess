@@ -111,7 +111,30 @@ bool WareSlot::CheckFront()
 	ToiletBoard* board = GameMgr::GetInst()->GetBoard();
 	WareSlot* front = board->GetSlot(line - 1, index);
 
-	bool isWin = CheckFront(front);
+	bool isWin = false;
+	
+	if(front->IsEmpty() == false)
+		isWin = CheckFront(front);
+	else
+	{
+		WareSlot* left = board->GetSlot(line - 1, index - 1);
+		WareSlot* right = board->GetSlot(line - 1, index + 1);
+		bool leftWin = false;
+		bool rightWin = false;
+
+		if (left && (left->IsEmpty() == false))
+			leftWin = CheckSide(left->GetConfidence());
+		else
+			leftWin = true;
+
+		if (right && (right->IsEmpty() == false))
+			rightWin = CheckSide(right->GetConfidence());
+		else
+			rightWin = true;
+
+		isWin = leftWin && rightWin;
+	}
+
 	if (isWin)
 	{
 		Texture* tempTex = wareTex;
