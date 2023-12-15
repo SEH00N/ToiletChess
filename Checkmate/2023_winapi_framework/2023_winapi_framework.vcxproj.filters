@@ -74,6 +74,9 @@
     <Filter Include="Engine\03. Manager\GameManager">
       <UniqueIdentifier>{b60186c6-fbff-4af5-8e59-75e8bd2bda06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\SoundMgr">
+      <UniqueIdentifier>{48653c0c-c1d7-4eaf-a7b4-c9d80dad8a6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -196,6 +199,9 @@
     <ClInclude Include="Result_Scene.h">
       <Filter>Engine\05. Scene\MainScene</Filter>
     </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>Engine\03. Manager\SoundMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2023_winapi_framework.rc">
@@ -309,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="Result_Scene.cpp">
       <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>Engine\03. Manager\SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
