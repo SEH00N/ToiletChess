@@ -25,6 +25,14 @@ void Game_Scene::Init()
 	InitInventory();
 }
 
+void Game_Scene::Release()
+{
+	Scene::Release();
+	//delete inven1;
+	//delete inven2;
+	//delete board;
+}
+
 void Game_Scene::LoadSounds()
 {
 	ResMgr* res = ResMgr::GetInst();
@@ -32,8 +40,9 @@ void Game_Scene::LoadSounds()
 	res->LoadSound(L"Button", L"Button", false);
 	res->LoadSound(L"Pick", L"Pick", false);
 	res->LoadSound(L"Lay", L"Lay", false);
+	res->LoadSound(L"Whistle", L"Whistle", false);
 	res->Volume(SOUND_CHANNEL::BGM, 0.3f);
-	res->Volume(SOUND_CHANNEL::EFFECT, 0.3f);
+	res->Volume(SOUND_CHANNEL::EFFECT, 0.1f);
 
 	res->Stop(SOUND_CHANNEL::BGM);
 	res->Play(L"IngameBG");

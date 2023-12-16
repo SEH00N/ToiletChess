@@ -8,6 +8,7 @@ class Game_Scene : public Scene
 {
 public:
     virtual void Init() override;
+    virtual void Release() override;
 
 public:
     void LoadSounds();

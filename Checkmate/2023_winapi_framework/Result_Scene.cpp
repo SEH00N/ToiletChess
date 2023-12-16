@@ -11,10 +11,17 @@
 
 void Result_Scene::Init()
 {
+	LoadSounds();
 	LoadBackground();
 	LoadTopPanel();
 	LoadBottomPanel();
 	LoadButtons();
+}
+
+void Result_Scene::Release()
+{
+	Scene::Release();
+	GameMgr::GetInst()->Reset();
 }
 
 void Result_Scene::LoadSounds()
@@ -22,7 +29,7 @@ void Result_Scene::LoadSounds()
 	ResMgr* res = ResMgr::GetInst();
 	res->LoadSound(L"ResultBG", L"ResultBG", true);
 	res->LoadSound(L"Button", L"Button", false);
-	res->Volume(SOUND_CHANNEL::BGM, 0.3f);
+	res->Volume(SOUND_CHANNEL::BGM, 1.0f);
 	res->Volume(SOUND_CHANNEL::EFFECT, 0.3f);
 
 	res->Stop(SOUND_CHANNEL::BGM);
@@ -56,20 +63,22 @@ void Result_Scene::LoadTopPanel()
 	int player2Score = game->GetPlayerScore(2);
 
 	Interface* bg = new Interface({ 400, 125 }, { 700, 150 });
-	bg->SetTexture(L"StatusPanel");
+	bg->SetTexture(L"ResultPanel1");
 
 	HFONT font = CreateFont(90, 60, 0, 0, 0, 0, 0, 0, HANGEUL_CHARSET, 0, 0, 0, VARIABLE_PITCH | FF_ROMAN, TEXT("Tenada"));
 	TextBox* textBox = new TextBox({ 400, 135 }, { 700, 150 }, L"");
 	textBox->SetFont(font);
 	textBox->SetFormat(DT_SINGLELINE | DT_CENTER | DT_VCENTER);
 	textBox->SetTransparent(true);
+	int winnerID = 0;
+
 	if (winner) // 위너가 있는 경우
 	{
-		textBox->SetText(L"PLAYER " + std::to_wstring(winner->GetOwner()) + L" 승리!");
+		winnerID = winner->GetOwner();
+		textBox->SetText(L"PLAYER " + std::to_wstring(winnerID) + L" 승리!");
 	}
 	else
 	{
-		int winnerID = 0;
 		if (player1Score > player2Score)
 			winnerID = 1;
 		else if (player1Score < player2Score)
@@ -90,7 +99,7 @@ void Result_Scene::LoadBottomPanel()
 	Vec2 resolution = Core::GetInst()->GetResolution();
 
 	Interface* bg = new Interface({ 350.0f, resolution.y - 150 }, { 600, 200 });
-	bg->SetTexture(L"ExplanePanel");
+	bg->SetTexture(L"ResultPanel2");
 
 	GameMgr* game = GameMgr::GetInst();
 	int player1Score = game->GetPlayerScore(1);

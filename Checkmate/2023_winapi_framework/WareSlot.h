@@ -41,11 +41,11 @@ public:
     int GetHeight() { return height; }
 
 private:
-    int index;
-    int line;
-    int confidence;
-    int height;
-    int owner;
+    int index = 0;
+    int line = 0;
+    int confidence = 0;
+    int height = 0;
+    int owner = 0;
 
 private:
     Texture* wareTex;

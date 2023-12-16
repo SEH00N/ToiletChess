@@ -75,6 +75,7 @@ void WareImage::OnClicked(Vec2 pos)
 			if (game->CheckEnd())
 			{
 				game->SetNotice(L"CHECK MATE!");
+				ResMgr::GetInst()->Play(L"Whistle");
 				game->CalculatePlayerScore();
 				ResMgr::GetInst()->Stop(SOUND_CHANNEL::BGM);
 

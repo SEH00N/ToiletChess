@@ -35,6 +35,8 @@ public:
 		return 0;
 	};
 
+	void Reset();
+
 public:
 	void ToggleInventory();
 	void CalculatePlayerScore();
@@ -47,9 +49,9 @@ private:
 private:
 	WareImage* currentWare;
 	WareSlot* currentSlot;
-	ToiletBoard* board;
-	Inventory* inven1;
-	Inventory* inven2;
+	ToiletBoard* board = nullptr;
+	Inventory* inven1 = nullptr;
+	Inventory* inven2 = nullptr;
 	Inventory* currentInven;
 	TextBox* noticeTextBox;
 	ToggleImage* leftPlayerImage;

@@ -10,7 +10,7 @@
 #include "WareImage.h"
 #include "Inventory.h"
 #include "TextBox.h"
-#include "SoundMgr.h"
+#include "GameMgr.h"
 
 void Start_Scene::Init()
 {
