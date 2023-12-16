@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SoundMgr.h"
+#include "PathMgr.h"
 
 SoundMgr::SoundMgr() : hwnd(NULL), currentBackgroundMusic(L"")
 {
@@ -18,7 +19,8 @@ bool SoundMgr::Initialize(HWND hWnd)
 
 void SoundMgr::LoadSound(const wchar_t* key, const wchar_t* filePath)
 {
-	soundMap[key] = filePath;
+    wstring resPath = PathMgr::GetInst()->GetResPath();
+	soundMap[key] = resPath + L"Sound\\" + filePath;
 }
 
 void SoundMgr::PlayBackgroundMusic(const wchar_t* key)

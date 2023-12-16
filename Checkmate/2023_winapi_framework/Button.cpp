@@ -3,6 +3,7 @@
 #include "Button.h"
 #include "ResMgr.h"
 #include "KeyMgr.h"
+#include "SoundMgr.h"
 
 Button::Button(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName)
 	: Interface(pos, scale), defaultTex{ nullptr }, focusedTex{ nullptr }, OnPressedEvent{ nullptr }, OnClickedEvent{nullptr}, pressed{false}

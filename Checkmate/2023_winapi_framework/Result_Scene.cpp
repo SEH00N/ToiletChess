@@ -7,6 +7,7 @@
 #include "Inventory.h"
 #include "GameMgr.h"
 #include "TextBox.h"
+#include "ResMgr.h"
 
 void Result_Scene::Init()
 {
@@ -14,6 +15,18 @@ void Result_Scene::Init()
 	LoadTopPanel();
 	LoadBottomPanel();
 	LoadButtons();
+}
+
+void Result_Scene::LoadSounds()
+{
+	ResMgr* res = ResMgr::GetInst();
+	res->LoadSound(L"ResultBG", L"ResultBG", true);
+	res->LoadSound(L"Button", L"Button", false);
+	res->Volume(SOUND_CHANNEL::BGM, 0.3f);
+	res->Volume(SOUND_CHANNEL::EFFECT, 0.3f);
+
+	res->Stop(SOUND_CHANNEL::BGM);
+	res->Play(L"ResultBG");
 }
 
 void Result_Scene::LoadBackground()
@@ -99,6 +112,10 @@ void Result_Scene::LoadButtons()
 	Vec2 resolution = Core::GetInst()->GetResolution();
 
 	Button* lobbyButton = new Button({ resolution.x - 225, resolution.y - 90 }, { 350, 95 }, L"LobbyButton", L"LobbyButton_Focused");
-	lobbyButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Start_Scene"); });
+	lobbyButton->RegisterClicked([]() {
+		ResMgr::GetInst()->Play(L"Button");
+		Sleep(300);
+		SceneMgr::GetInst()->LoadScene(L"Start_Scene"); 
+	});
 	AddObject(lobbyButton);
 }

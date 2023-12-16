@@ -10,6 +10,7 @@ public:
     virtual void Init() override;
 
 public:
+    void LoadSounds();
     void LoadBackground();
     void LoadButtons();
     void LoadTopPanel();

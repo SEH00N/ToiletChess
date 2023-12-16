@@ -70,7 +70,7 @@ void ResMgr::LoadSound(const wstring& _strKey, const wstring& _strReleativePath,
     if (FindSound(_strKey))
         return;
     wstring strFilePath = PathMgr::GetInst()->GetResPath();
-    strFilePath += _strReleativePath;
+    strFilePath += L"Sound\\" + _strReleativePath + L".wav";
 
     // wstring to string
     std::string str;

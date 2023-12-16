@@ -10,9 +10,11 @@
 #include "WareImage.h"
 #include "Inventory.h"
 #include "TextBox.h"
+#include "SoundMgr.h"
 
 void Start_Scene::Init()
 {
+	LoadSounds();
 	LoadBackground();
 	LoadButtons();
 
@@ -43,6 +45,18 @@ void Start_Scene::Release()
 	CollisionMgr::GetInst()->CheckReset();
 }
 
+void Start_Scene::LoadSounds()
+{
+	ResMgr* res = ResMgr::GetInst();
+	res->LoadSound(L"IntroBG", L"IntroBG", true);
+	res->LoadSound(L"Button", L"Button", false);
+	res->Volume(SOUND_CHANNEL::BGM, 0.3f);
+	res->Volume(SOUND_CHANNEL::EFFECT, 0.3f);
+
+	res->Stop(SOUND_CHANNEL::BGM);
+	res->Play(L"IntroBG");
+}
+
 void Start_Scene::LoadBackground()
 {
 	Vec2 resolution = Core::GetInst()->GetResolution();
@@ -70,14 +84,26 @@ void Start_Scene::LoadButtons()
 	Vec2 resolution = Core::GetInst()->GetResolution();
 
 	Button* startButton = new Button({ resolution.x / 2 - 225, 575.0f }, { 350, 95 }, L"StartButton", L"StartButton_Focused");
-	startButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Game_Scene"); });
+	startButton->RegisterClicked([&]() {
+		ResMgr::GetInst()->Play(L"Button");
+		Sleep(300);
+		SceneMgr::GetInst()->LoadScene(L"Game_Scene");
+	});
 	AddObject(startButton);
 
 	Button* infoButton = new Button({ resolution.x / 2 + 225, 575.0f }, { 350, 95 }, L"InfoButton", L"InfoButton_Focused");
-	infoButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Info_Scene"); });
+	infoButton->RegisterClicked([&]() {
+		ResMgr::GetInst()->Play(L"Button");
+		Sleep(300);
+		SceneMgr::GetInst()->LoadScene(L"Info_Scene"); 
+	});
 	AddObject(infoButton);
 
 	Button* exitButton = new Button({ resolution.x - 65, resolution.y - 65 }, { 85, 85 }, L"ExitButton", L"ExitButton_Focused");
-	exitButton->RegisterClicked([]() {PostQuitMessage(0); });
+	exitButton->RegisterClicked([&]() {
+		ResMgr::GetInst()->Play(L"Button");
+		Sleep(300);
+		PostQuitMessage(0); 
+	});
 	AddObject(exitButton);
 }

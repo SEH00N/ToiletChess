@@ -23,6 +23,6 @@ public:
 	void ForeachSlot(std::function<bool(WareSlot*, int, int)> callback);
 
 private:
-	const int BoardRow = 1;
+	const int BoardRow = 6;
 };
 

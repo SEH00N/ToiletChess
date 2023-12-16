@@ -10,9 +10,11 @@
 #include "ToiletBoard.h"
 #include "ToggleImage.h"
 #include "Button.h"
+#include "ResMgr.h";
 
 void Game_Scene::Init()
 {
+	LoadSounds();
 	LoadBackground();
 	LoadButtons();
 	LoadTopPanel();
@@ -21,6 +23,20 @@ void Game_Scene::Init()
 	GameMgr::GetInst()->SetBoard(board);
 
 	InitInventory();
+}
+
+void Game_Scene::LoadSounds()
+{
+	ResMgr* res = ResMgr::GetInst();
+	res->LoadSound(L"IngameBG", L"IngameBG", true);
+	res->LoadSound(L"Button", L"Button", false);
+	res->LoadSound(L"Pick", L"Pick", false);
+	res->LoadSound(L"Lay", L"Lay", false);
+	res->Volume(SOUND_CHANNEL::BGM, 0.3f);
+	res->Volume(SOUND_CHANNEL::EFFECT, 0.3f);
+
+	res->Stop(SOUND_CHANNEL::BGM);
+	res->Play(L"IngameBG");
 }
 
 void Game_Scene::LoadBackground()
@@ -38,7 +54,11 @@ void Game_Scene::LoadButtons()
 {
 	Vec2 resolution = Core::GetInst()->GetResolution();
 	Button* exitButton = new Button({ resolution.x - 65, resolution.y - 65 }, { 85, 85 }, L"ExitButton", L"ExitButton_Focused");
-	exitButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Start_Scene"); });
+	exitButton->RegisterClicked([&]() {
+		ResMgr::GetInst()->Play(L"Button");
+		Sleep(300);
+		SceneMgr::GetInst()->LoadScene(L"Start_Scene");
+	});
 	AddObject(exitButton);
 }
 

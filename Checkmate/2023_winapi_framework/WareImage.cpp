@@ -5,9 +5,11 @@
 #include "GameMgr.h"
 #include "SceneMgr.h"
 #include "EventMgr.h"
+#include "SoundMgr.h"
 #include "Scene.h"
 #include "WareInventorySlot.h"
 #include "WareSlot.h"
+#include "ResMgr.h"
 
 WareImage::WareImage(Vec2 pos, Vec2 scale, wstring defaultTexName, wstring focusedTexName, int owner)
 	: Button(pos, scale, defaultTexName, focusedTexName), slot{ nullptr }, offset{ Vec2(0, 0) }, owner{ owner }
@@ -49,6 +51,7 @@ void WareImage::OnPressed(Vec2 pos)
 {
 	offset = CalculateOffset(pos);
 	GameMgr::GetInst()->SetCurrentWare(this);
+	ResMgr::GetInst()->Play(L"Pick");
 }
 
 void WareImage::OnClicked(Vec2 pos)
@@ -73,6 +76,7 @@ void WareImage::OnClicked(Vec2 pos)
 			{
 				game->SetNotice(L"CHECK MATE!");
 				game->CalculatePlayerScore();
+				ResMgr::GetInst()->Stop(SOUND_CHANNEL::BGM);
 
 				EventMgr::GetInst()->DelayCallback([&game]() {
 					Sleep(1000);
@@ -86,4 +90,5 @@ void WareImage::OnClicked(Vec2 pos)
 			SetPos(slot->GetPos());
 	}
 
+	ResMgr::GetInst()->Play(L"Lay");
 }

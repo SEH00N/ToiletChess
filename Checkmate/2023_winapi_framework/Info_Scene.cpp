@@ -5,6 +5,7 @@
 #include "Button.h"
 #include "Core.h"
 #include "SceneMgr.h"
+#include "ResMgr.h"
 
 void Info_Scene::Init()
 {
@@ -20,9 +21,12 @@ void Info_Scene::Init()
 	LoadLeftPanel();
 	LoadRightPanel();
 
-
 	Button* lobbyButton = new Button({ 925.0f, resolution.y - 100 }, { 350, 95 }, L"LobbyButton", L"LobbyButton_Focused");
-	lobbyButton->RegisterClicked([]() {SceneMgr::GetInst()->LoadScene(L"Start_Scene"); });
+	lobbyButton->RegisterClicked([&]() {
+		ResMgr::GetInst()->Play(L"Button");
+		Sleep(500);
+		SceneMgr::GetInst()->LoadScene(L"Start_Scene"); 
+	});
 	AddObject(lobbyButton);
 }
 

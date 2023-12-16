@@ -6,6 +6,7 @@ public:
     virtual void Init() override;
 
 private:
+    void LoadSounds();
     void LoadBackground();
     void LoadTopPanel();
     void LoadBottomPanel();

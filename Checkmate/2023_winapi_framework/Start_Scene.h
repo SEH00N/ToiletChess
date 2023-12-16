@@ -15,6 +15,7 @@ public:
     virtual void Release() override;
 
 private:
+    void LoadSounds();
     void LoadBackground();
     void LoadButtons();
 };

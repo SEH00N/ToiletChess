@@ -2,6 +2,7 @@
 #include "Inventory.h"
 #include "WareImage.h"
 #include "SceneMgr.h"
+#include "SoundMgr.h"
 #include "Scene.h"
 
 Inventory::Inventory(int owner) : owner{owner}
